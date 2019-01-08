@@ -35,7 +35,7 @@ internal class Auth {
     internal let logInCallbackStream = PublishSubject<(User_LogInResponse, CallResult)>()
     internal let signInWithGoogleStream = PublishSubject<User_SignInWithGoogleRequest>()
 
-    internal let refreshTokenStream = Observable<Int>.interval(RxTimeInterval(60 * 5), scheduler: MainScheduler.instance)
+    internal let refreshAccessTokenStream = Observable<Int>.interval(RxTimeInterval(60 * 5), scheduler: MainScheduler.instance)
     internal var shouldRefreshAccessTokenPeriodically = true
 
     private let authClient = GrpcClient.shared.AuthClient()
@@ -52,8 +52,8 @@ internal class Auth {
         return sharedAuth
     }
 
-    private init() {
-        self.logInStream
+    func initLogInStream() {
+        logInStream
             .debug("logInStream")
             .subscribe(onNext: { (logInRequest) in
                 _ = try? self.userClient.logIn(logInRequest, completion: { (resp, result) in
@@ -61,8 +61,10 @@ internal class Auth {
                 })
             })
             .disposed(by: disposeBag)
+    }
 
-        self.logInCallbackStream
+    func initLogInCallbackStream() {
+        logInCallbackStream
             .debug("logInCallbackStream")
             .subscribe(onNext: { (resp, result) in
                 guard result.statusCode == .ok else {
@@ -73,8 +75,10 @@ internal class Auth {
                 KeyStore.shared.userId = resp.userID
             })
             .disposed(by: disposeBag)
+    }
 
-        self.signInWithGoogleStream
+    func initSignInWithGoogleStream() {
+        signInWithGoogleStream
             .debug("signInWithGoogleStream")
             .subscribe(onNext: { (signInWithGoogleRequest) in
                 _ = try? self.userClient.signInWithGoogle(signInWithGoogleRequest, completion: { (resp, result) in
@@ -88,8 +92,10 @@ internal class Auth {
                 })
             })
             .disposed(by: disposeBag)
+    }
 
-        self.refreshTokenStream
+    func initRefreshAccessTokenStream() {
+        self.refreshAccessTokenStream
             .debug("refreshTokenStream")
             .subscribe(onNext: {event in
                 guard self.shouldRefreshAccessTokenPeriodically else {
@@ -99,6 +105,13 @@ internal class Auth {
                 try? self.refreshAccessToken()
             })
             .disposed(by: self.disposeBag)
+    }
+
+    private init() {
+        initLogInStream()
+        initLogInCallbackStream()
+        initSignInWithGoogleStream()
+        initRefreshAccessTokenStream()
     }
 
     internal var refreshToken: String? {

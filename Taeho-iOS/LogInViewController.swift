@@ -22,18 +22,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     let disposeBag = DisposeBag()
 
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        GIDSignIn.sharedInstance().uiDelegate = self
-        googleSignInButton.colorScheme = .light
-        googleSignInButton.style = .wide
-
-        view.addSubview(activityIndicator)
-        activityIndicator.frame = view.bounds
-
-        emailText.becomeFirstResponder()
-
+    func initAuthLogInCallbackStream() {
         Auth.shared.logInCallbackStream
             .debug("logInCallbackStream")
             .subscribe(onNext: {(resp, result) in
@@ -52,7 +41,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 }
             })
             .disposed(by: disposeBag)
+    }
 
+    func initGoogleSignInCallbackStream() {
         GoogleSignIn.shared.signInCallbackStream
             .debug("signInCallbackStream in LogInViewController")
             .subscribe(onNext: { user in
@@ -66,6 +57,24 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 Auth.shared.signInWithGoogleStream.onNext(signInWithGoogleRequest)
             })
             .disposed(by: disposeBag)
+    }
+
+    func initGoogleSignInButton() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        googleSignInButton.colorScheme = .light
+        googleSignInButton.style = .wide
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(activityIndicator)
+        activityIndicator.frame = view.bounds
+        emailText.becomeFirstResponder()
+        initGoogleSignInButton()
+
+        initAuthLogInCallbackStream()
+        initGoogleSignInCallbackStream()
     }
 
     @IBAction func logInButtonPressed(_ sender: Any) {
