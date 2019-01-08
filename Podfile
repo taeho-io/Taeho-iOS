@@ -7,8 +7,10 @@ target 'Taeho-iOS' do
 
   # Pods for Taeho-iOS
   pod 'RxSwift', '~> 4.4'
+  pod 'RxCocoa', '~> 4.4'
   pod 'SwiftGRPC', '~> 0.6.0'
   pod 'KeychainAccess', '~> 3.1.2'
+  pod 'GoogleSignIn', '~> 4.4.0'
 
   target 'Taeho-iOSTests' do
     inherit! :search_paths

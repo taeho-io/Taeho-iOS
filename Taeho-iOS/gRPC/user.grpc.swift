@@ -28,74 +28,96 @@ import SwiftProtobuf
 internal protocol User_UserRegisterCall: ClientCallUnary {}
 
 fileprivate final class User_UserRegisterCallBase: ClientCallUnaryBase<User_RegisterRequest, User_RegisterResponse>, User_UserRegisterCall {
-  override class var method: String { return "/user.User/Register" }
+    override class var method: String { return "/user.User/Register" }
 }
 
 internal protocol User_UserLogInCall: ClientCallUnary {}
 
 fileprivate final class User_UserLogInCallBase: ClientCallUnaryBase<User_LogInRequest, User_LogInResponse>, User_UserLogInCall {
-  override class var method: String { return "/user.User/LogIn" }
+    override class var method: String { return "/user.User/LogIn" }
+}
+
+internal protocol User_UserSignInWithGoogleCall: ClientCallUnary {}
+
+fileprivate final class User_UserSignInWithGoogleCallBase: ClientCallUnaryBase<User_SignInWithGoogleRequest, User_SignInWithGoogleResponse>, User_UserSignInWithGoogleCall {
+    override class var method: String { return "/user.User/SignInWithGoogle" }
 }
 
 internal protocol User_UserGetCall: ClientCallUnary {}
 
 fileprivate final class User_UserGetCallBase: ClientCallUnaryBase<User_GetRequest, User_GetResponse>, User_UserGetCall {
-  override class var method: String { return "/user.User/Get" }
+    override class var method: String { return "/user.User/Get" }
 }
 
 
 /// Instantiate User_UserServiceClient, then call methods of this protocol to make API calls.
 internal protocol User_UserService: ServiceClient {
-  /// Synchronous. Unary.
-  func register(_ request: User_RegisterRequest) throws -> User_RegisterResponse
-  /// Asynchronous. Unary.
-  func register(_ request: User_RegisterRequest, completion: @escaping (User_RegisterResponse?, CallResult) -> Void) throws -> User_UserRegisterCall
+    /// Synchronous. Unary.
+    func register(_ request: User_RegisterRequest) throws -> User_RegisterResponse
+    /// Asynchronous. Unary.
+    func register(_ request: User_RegisterRequest, completion: @escaping (User_RegisterResponse?, CallResult) -> Void) throws -> User_UserRegisterCall
 
-  /// Synchronous. Unary.
-  func logIn(_ request: User_LogInRequest) throws -> User_LogInResponse
-  /// Asynchronous. Unary.
-  func logIn(_ request: User_LogInRequest, completion: @escaping (User_LogInResponse?, CallResult) -> Void) throws -> User_UserLogInCall
+    /// Synchronous. Unary.
+    func logIn(_ request: User_LogInRequest) throws -> User_LogInResponse
+    /// Asynchronous. Unary.
+    func logIn(_ request: User_LogInRequest, completion: @escaping (User_LogInResponse?, CallResult) -> Void) throws -> User_UserLogInCall
 
-  /// Synchronous. Unary.
-  func get(_ request: User_GetRequest) throws -> User_GetResponse
-  /// Asynchronous. Unary.
-  func get(_ request: User_GetRequest, completion: @escaping (User_GetResponse?, CallResult) -> Void) throws -> User_UserGetCall
+    /// Synchronous. Unary.
+    func signInWithGoogle(_ request: User_SignInWithGoogleRequest) throws -> User_SignInWithGoogleResponse
+    /// Asynchronous. Unary.
+    func signInWithGoogle(_ request: User_SignInWithGoogleRequest, completion: @escaping (User_SignInWithGoogleResponse?, CallResult) -> Void) throws -> User_UserSignInWithGoogleCall
+
+    /// Synchronous. Unary.
+    func get(_ request: User_GetRequest) throws -> User_GetResponse
+    /// Asynchronous. Unary.
+    func get(_ request: User_GetRequest, completion: @escaping (User_GetResponse?, CallResult) -> Void) throws -> User_UserGetCall
 
 }
 
 internal final class User_UserServiceClient: ServiceClientBase, User_UserService {
-  /// Synchronous. Unary.
-  internal func register(_ request: User_RegisterRequest) throws -> User_RegisterResponse {
-    return try User_UserRegisterCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func register(_ request: User_RegisterRequest, completion: @escaping (User_RegisterResponse?, CallResult) -> Void) throws -> User_UserRegisterCall {
-    return try User_UserRegisterCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
+    /// Synchronous. Unary.
+    internal func register(_ request: User_RegisterRequest) throws -> User_RegisterResponse {
+        return try User_UserRegisterCallBase(channel)
+            .run(request: request, metadata: metadata)
+    }
+    /// Asynchronous. Unary.
+    internal func register(_ request: User_RegisterRequest, completion: @escaping (User_RegisterResponse?, CallResult) -> Void) throws -> User_UserRegisterCall {
+        return try User_UserRegisterCallBase(channel)
+            .start(request: request, metadata: metadata, completion: completion)
+    }
 
-  /// Synchronous. Unary.
-  internal func logIn(_ request: User_LogInRequest) throws -> User_LogInResponse {
-    return try User_UserLogInCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func logIn(_ request: User_LogInRequest, completion: @escaping (User_LogInResponse?, CallResult) -> Void) throws -> User_UserLogInCall {
-    return try User_UserLogInCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
+    /// Synchronous. Unary.
+    internal func logIn(_ request: User_LogInRequest) throws -> User_LogInResponse {
+        return try User_UserLogInCallBase(channel)
+            .run(request: request, metadata: metadata)
+    }
+    /// Asynchronous. Unary.
+    internal func logIn(_ request: User_LogInRequest, completion: @escaping (User_LogInResponse?, CallResult) -> Void) throws -> User_UserLogInCall {
+        return try User_UserLogInCallBase(channel)
+            .start(request: request, metadata: metadata, completion: completion)
+    }
 
-  /// Synchronous. Unary.
-  internal func get(_ request: User_GetRequest) throws -> User_GetResponse {
-    return try User_UserGetCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func get(_ request: User_GetRequest, completion: @escaping (User_GetResponse?, CallResult) -> Void) throws -> User_UserGetCall {
-    return try User_UserGetCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
+    /// Synchronous. Unary.
+    internal func signInWithGoogle(_ request: User_SignInWithGoogleRequest) throws -> User_SignInWithGoogleResponse {
+        return try User_UserSignInWithGoogleCallBase(channel)
+            .run(request: request, metadata: metadata)
+    }
+    /// Asynchronous. Unary.
+    internal func signInWithGoogle(_ request: User_SignInWithGoogleRequest, completion: @escaping (User_SignInWithGoogleResponse?, CallResult) -> Void) throws -> User_UserSignInWithGoogleCall {
+        return try User_UserSignInWithGoogleCallBase(channel)
+            .start(request: request, metadata: metadata, completion: completion)
+    }
+
+    /// Synchronous. Unary.
+    internal func get(_ request: User_GetRequest) throws -> User_GetResponse {
+        return try User_UserGetCallBase(channel)
+            .run(request: request, metadata: metadata)
+    }
+    /// Asynchronous. Unary.
+    internal func get(_ request: User_GetRequest, completion: @escaping (User_GetResponse?, CallResult) -> Void) throws -> User_UserGetCall {
+        return try User_UserGetCallBase(channel)
+            .start(request: request, metadata: metadata, completion: completion)
+    }
 
 }
 

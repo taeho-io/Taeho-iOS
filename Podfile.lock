@@ -5,6 +5,18 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.0):
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+  - GoogleToolboxForMac/Defines (2.2.0)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.0)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.0)
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
   - gRPC-Core (1.12.0):
     - gRPC-Core/Implementation (= 1.12.0)
     - gRPC-Core/Interface (= 1.12.0)
@@ -13,6 +25,7 @@ PODS:
     - gRPC-Core/Interface (= 1.12.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.12.0)
+  - GTMSessionFetcher/Core (1.2.1)
   - KeychainAccess (3.1.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -20,6 +33,8 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
   - SwiftGRPC (0.6.0):
@@ -29,31 +44,41 @@ PODS:
   - SwiftProtobuf (1.1.2)
 
 DEPENDENCIES:
-  - KeychainAccess
+  - GoogleSignIn
+  - KeychainAccess (~> 3.1.2)
+  - RxCocoa (~> 4.4)
   - RxSwift (~> 4.4)
   - SwiftGRPC (~> 0.6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL
+    - GoogleSignIn
+    - GoogleToolboxForMac
     - gRPC-Core
+    - GTMSessionFetcher
     - KeychainAccess
     - nanopb
     - RxAtomic
+    - RxCocoa
     - RxSwift
     - SwiftGRPC
     - SwiftProtobuf
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   gRPC-Core: 9696b220565b283e021cf2722d473a4a74b7622a
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SwiftGRPC: 465792c0e09dcb083d19d97137cee71b4f4f8b6f
   SwiftProtobuf: 7147b8ec19c8c0694a45155d989ea9e6dedaf51f
 
-PODFILE CHECKSUM: 317603ee899662d3b54c7f81400d3e85c45f4662
+PODFILE CHECKSUM: 0b292a418bda33b1ef08d2e8f518607fcecaa666
 
 COCOAPODS: 1.5.3

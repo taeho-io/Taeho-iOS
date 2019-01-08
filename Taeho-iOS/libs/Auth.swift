@@ -32,7 +32,9 @@ internal class Auth {
     private let disposeBag = DisposeBag()
 
     internal let logInStream = PublishSubject<User_LogInRequest>()
-    internal let logInCallback = PublishSubject<(User_LogInResponse, CallResult)>()
+    internal let logInCallbackStream = PublishSubject<(User_LogInResponse, CallResult)>()
+    internal let signInWithGoogleStream = PublishSubject<User_SignInWithGoogleRequest>()
+
     internal let refreshTokenStream = Observable<Int>.interval(RxTimeInterval(60 * 5), scheduler: MainScheduler.instance)
     internal var shouldRefreshAccessTokenPeriodically = true
 
@@ -55,13 +57,13 @@ internal class Auth {
             .debug("logInStream")
             .subscribe(onNext: { (logInRequest) in
                 _ = try? self.userClient.logIn(logInRequest, completion: { (resp, result) in
-                    self.logInCallback.onNext((resp ?? User_LogInResponse(), result))
+                    self.logInCallbackStream.onNext((resp ?? User_LogInResponse(), result))
                 })
             })
             .disposed(by: disposeBag)
 
-        self.logInCallback
-            .debug("logInCallback in Auth")
+        self.logInCallbackStream
+            .debug("logInCallbackStream")
             .subscribe(onNext: { (resp, result) in
                 guard result.statusCode == .ok else {
                     return
@@ -69,6 +71,21 @@ internal class Auth {
 
                 KeyStore.shared.refreshToken = resp.refreshToken
                 KeyStore.shared.userId = resp.userID
+            })
+            .disposed(by: disposeBag)
+
+        self.signInWithGoogleStream
+            .debug("signInWithGoogleStream")
+            .subscribe(onNext: { (signInWithGoogleRequest) in
+                _ = try? self.userClient.signInWithGoogle(signInWithGoogleRequest, completion: { (resp, result) in
+                    var logInResponse = User_LogInResponse()
+                    logInResponse.accessToken = resp?.accessToken ?? ""
+                    logInResponse.refreshToken = resp?.refreshToken ?? ""
+                    logInResponse.expiresIn = resp?.expiresIn ?? 0
+                    logInResponse.userID = resp?.userID ?? 0
+
+                    self.logInCallbackStream.onNext((logInResponse, result))
+                })
             })
             .disposed(by: disposeBag)
 

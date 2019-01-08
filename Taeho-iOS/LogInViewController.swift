@@ -8,14 +8,16 @@
 
 import UIKit
 import RxSwift
+import GoogleSignIn
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var errorMessagesLabel: UILabel!
-
+    @IBOutlet weak var googleSignInButton: GIDSignInButton!
+    
     let activityIndicator = UIActivityIndicatorView(style: .gray)
     let disposeBag = DisposeBag()
 
@@ -23,14 +25,17 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        GIDSignIn.sharedInstance().uiDelegate = self
+        googleSignInButton.colorScheme = .light
+        googleSignInButton.style = .wide
+
         view.addSubview(activityIndicator)
         activityIndicator.frame = view.bounds
 
         emailText.becomeFirstResponder()
 
-        Auth.shared.logInCallback
-            .debug("logInCallBack")
+        Auth.shared.logInCallbackStream
+            .debug("logInCallbackStream")
             .subscribe(onNext: {(resp, result) in
                 DispatchQueue.main.async {
                     defer {
@@ -45,6 +50,20 @@ class LogInViewController: UIViewController {
 
                     self.performSegue(withIdentifier: "SegueLogInToRoot", sender: self)
                 }
+            })
+            .disposed(by: disposeBag)
+
+        GoogleSignIn.shared.signInCallbackStream
+            .debug("signInCallbackStream in LogInViewController")
+            .subscribe(onNext: { user in
+                self.activityIndicator.startAnimating()
+                self.errorMessagesLabel.text = nil
+
+                var signInWithGoogleRequest = User_SignInWithGoogleRequest()
+                signInWithGoogleRequest.googleIDToken = user.authentication.idToken
+                signInWithGoogleRequest.name = user.profile.name
+
+                Auth.shared.signInWithGoogleStream.onNext(signInWithGoogleRequest)
             })
             .disposed(by: disposeBag)
     }

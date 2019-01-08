@@ -15,10 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Init GoogleSignIn
+        _ = GoogleSignIn.shared
+
+        // Show LogInNavigationController as needed.
+        Auth.shared.refreshToken = nil
         if Auth.shared.refreshToken == nil {
             self.changeRootViewController(storyboardName: "Main", viewControllerIdentifier: "LogInNavigationController")
         }
+
         return true
     }
 

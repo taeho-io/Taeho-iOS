@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		17C3506AE2D3122C4FF31FA6 /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */; };
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
+		74BD698D21E47A630025AA61 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD698C21E47A630025AA61 /* const.swift */; };
+		74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */; };
 		74D568BF21E043E500E6B6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D568BE21E043E500E6B6E7 /* AppDelegate.swift */; };
 		74D568C421E043E500E6B6E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D568C221E043E500E6B6E7 /* Main.storyboard */; };
 		74D568C621E043E700E6B6E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D568C521E043E700E6B6E7 /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		533A2DB9BAB7208E7F7111DA /* Pods-Taeho-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		74BD698C21E47A630025AA61 /* const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = const.swift; sourceTree = "<group>"; };
+		74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
 		74D568BB21E043E500E6B6E7 /* Taeho-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Taeho-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D568BE21E043E500E6B6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74D568C321E043E500E6B6E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				74D5691221E1E99D00E6B6E7 /* SignUpViewController.swift */,
 				74D5691B21E29D2400E6B6E7 /* RootNavigationController.swift */,
 				74D568CA21E043E700E6B6E7 /* Info.plist */,
+				74BD698C21E47A630025AA61 /* const.swift */,
 			);
 			path = "Taeho-iOS";
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			children = (
 				74D5690121E1CD5000E6B6E7 /* KeyStore.swift */,
 				74D5691921E2939700E6B6E7 /* Auth.swift */,
+				74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 				74D568B821E043E500E6B6E7 /* Frameworks */,
 				74D568B921E043E500E6B6E7 /* Resources */,
 				BABF168B1B1386830DCF1ABA /* [CP] Embed Pods Frameworks */,
+				8F05A03568E8E597DA101E8E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,6 +400,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8F05A03568E8E597DA101E8E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOS/Pods-Taeho-iOS-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOS/Pods-Taeho-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BABF168B1B1386830DCF1ABA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,8 +426,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOS/Pods-Taeho-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
@@ -412,8 +440,11 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
@@ -441,6 +472,8 @@
 				74D5691A21E2939700E6B6E7 /* Auth.swift in Sources */,
 				74D5690021E0627400E6B6E7 /* auth.grpc.swift in Sources */,
 				74D5691121E1DCF300E6B6E7 /* user.pb.swift in Sources */,
+				74BD698D21E47A630025AA61 /* const.swift in Sources */,
+				74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */,
 				74D568FF21E0627400E6B6E7 /* auth.pb.swift in Sources */,
 				74D5690221E1CD5000E6B6E7 /* KeyStore.swift in Sources */,
 			);
