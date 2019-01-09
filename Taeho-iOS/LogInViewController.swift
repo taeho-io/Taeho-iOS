@@ -12,19 +12,20 @@ import GoogleSignIn
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate {
 
+    let disposeBag = DisposeBag()
+
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var errorMessagesLabel: UILabel!
     @IBOutlet weak var googleSignInButton: GIDSignInButton!
-    
     let activityIndicator = UIActivityIndicatorView(style: .gray)
-    let disposeBag = DisposeBag()
 
 
     func initAuthLogInCallbackStream() {
         Auth.shared.logInCallbackStream
             .debug("logInCallbackStream")
+            .take(1)
             .subscribe(onNext: {(resp, result) in
                 DispatchQueue.main.async {
                     defer {
@@ -46,6 +47,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     func initGoogleSignInCallbackStream() {
         GoogleSignIn.shared.signInCallbackStream
             .debug("signInCallbackStream in LogInViewController")
+            .take(1)
             .subscribe(onNext: { user in
                 self.activityIndicator.startAnimating()
                 self.errorMessagesLabel.text = nil

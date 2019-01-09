@@ -11,6 +11,8 @@
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
 		74BD698D21E47A630025AA61 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD698C21E47A630025AA61 /* const.swift */; };
 		74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */; };
+		74BD699321E5ABED0025AA61 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD699221E5ABED0025AA61 /* NotesViewController.swift */; };
+		74BD699521E5B5FA0025AA61 /* GrpcClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BD699421E5B5FA0025AA61 /* GrpcClient.swift */; };
 		74D568BF21E043E500E6B6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D568BE21E043E500E6B6E7 /* AppDelegate.swift */; };
 		74D568C421E043E500E6B6E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D568C221E043E500E6B6E7 /* Main.storyboard */; };
 		74D568C621E043E700E6B6E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D568C521E043E700E6B6E7 /* Assets.xcassets */; };
@@ -21,7 +23,6 @@
 		74D5690021E0627400E6B6E7 /* auth.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D568FE21E0627400E6B6E7 /* auth.grpc.swift */; };
 		74D5690221E1CD5000E6B6E7 /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690121E1CD5000E6B6E7 /* KeyStore.swift */; };
 		74D5690A21E1D2B900E6B6E7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690921E1D2B900E6B6E7 /* LogInViewController.swift */; };
-		74D5690D21E1DB9400E6B6E7 /* GrpcClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690C21E1DB9400E6B6E7 /* GrpcClient.swift */; };
 		74D5691021E1DCF300E6B6E7 /* user.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690E21E1DCF300E6B6E7 /* user.grpc.swift */; };
 		74D5691121E1DCF300E6B6E7 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690F21E1DCF300E6B6E7 /* user.pb.swift */; };
 		74D5691321E1E99D00E6B6E7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5691221E1E99D00E6B6E7 /* SignUpViewController.swift */; };
@@ -52,6 +53,8 @@
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		74BD698C21E47A630025AA61 /* const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = const.swift; sourceTree = "<group>"; };
 		74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
+		74BD699221E5ABED0025AA61 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		74BD699421E5B5FA0025AA61 /* GrpcClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrpcClient.swift; sourceTree = "<group>"; };
 		74D568BB21E043E500E6B6E7 /* Taeho-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Taeho-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D568BE21E043E500E6B6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74D568C321E043E500E6B6E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +71,6 @@
 		74D568FE21E0627400E6B6E7 /* auth.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = auth.grpc.swift; sourceTree = "<group>"; };
 		74D5690121E1CD5000E6B6E7 /* KeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
 		74D5690921E1D2B900E6B6E7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		74D5690C21E1DB9400E6B6E7 /* GrpcClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrpcClient.swift; sourceTree = "<group>"; };
 		74D5690E21E1DCF300E6B6E7 /* user.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.grpc.swift; sourceTree = "<group>"; };
 		74D5690F21E1DCF300E6B6E7 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
 		74D5691221E1E99D00E6B6E7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -160,13 +162,14 @@
 			isa = PBXGroup;
 			children = (
 				74D5691821E2938600E6B6E7 /* libs */,
-				74D5690B21E1DB3600E6B6E7 /* gRPC */,
+				74D5690B21E1DB3600E6B6E7 /* grpc */,
 				74D568BE21E043E500E6B6E7 /* AppDelegate.swift */,
 				74D568C221E043E500E6B6E7 /* Main.storyboard */,
 				74D568C521E043E700E6B6E7 /* Assets.xcassets */,
 				74D568C721E043E700E6B6E7 /* LaunchScreen.storyboard */,
 				74D5690921E1D2B900E6B6E7 /* LogInViewController.swift */,
 				74D5691221E1E99D00E6B6E7 /* SignUpViewController.swift */,
+				74BD699221E5ABED0025AA61 /* NotesViewController.swift */,
 				74D5691B21E29D2400E6B6E7 /* RootNavigationController.swift */,
 				74D568CA21E043E700E6B6E7 /* Info.plist */,
 				74BD698C21E47A630025AA61 /* const.swift */,
@@ -192,21 +195,21 @@
 			path = "Taeho-iOSUITests";
 			sourceTree = "<group>";
 		};
-		74D5690B21E1DB3600E6B6E7 /* gRPC */ = {
+		74D5690B21E1DB3600E6B6E7 /* grpc */ = {
 			isa = PBXGroup;
 			children = (
-				74D5690C21E1DB9400E6B6E7 /* GrpcClient.swift */,
 				74D568FE21E0627400E6B6E7 /* auth.grpc.swift */,
 				74D568FD21E0627400E6B6E7 /* auth.pb.swift */,
 				74D5690E21E1DCF300E6B6E7 /* user.grpc.swift */,
 				74D5690F21E1DCF300E6B6E7 /* user.pb.swift */,
 			);
-			path = gRPC;
+			path = grpc;
 			sourceTree = "<group>";
 		};
 		74D5691821E2938600E6B6E7 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				74BD699421E5B5FA0025AA61 /* GrpcClient.swift */,
 				74D5690121E1CD5000E6B6E7 /* KeyStore.swift */,
 				74D5691921E2939700E6B6E7 /* Auth.swift */,
 				74BD698E21E47AC30025AA61 /* GoogleSignIn.swift */,
@@ -463,9 +466,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74D5690D21E1DB9400E6B6E7 /* GrpcClient.swift in Sources */,
 				74D568BF21E043E500E6B6E7 /* AppDelegate.swift in Sources */,
 				74D5691021E1DCF300E6B6E7 /* user.grpc.swift in Sources */,
+				74BD699521E5B5FA0025AA61 /* GrpcClient.swift in Sources */,
 				74D5691321E1E99D00E6B6E7 /* SignUpViewController.swift in Sources */,
 				74D5691C21E29D2400E6B6E7 /* RootNavigationController.swift in Sources */,
 				74D5690A21E1D2B900E6B6E7 /* LogInViewController.swift in Sources */,
@@ -473,6 +476,7 @@
 				74D5690021E0627400E6B6E7 /* auth.grpc.swift in Sources */,
 				74D5691121E1DCF300E6B6E7 /* user.pb.swift in Sources */,
 				74BD698D21E47A630025AA61 /* const.swift in Sources */,
+				74BD699321E5ABED0025AA61 /* NotesViewController.swift in Sources */,
 				74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */,
 				74D568FF21E0627400E6B6E7 /* auth.pb.swift in Sources */,
 				74D5690221E1CD5000E6B6E7 /* KeyStore.swift in Sources */,

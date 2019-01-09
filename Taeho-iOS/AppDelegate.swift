@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = GoogleSignIn.shared
 
         // Show LogInNavigationController as needed.
-        Auth.shared.refreshToken = nil
         if Auth.shared.refreshToken == nil {
             self.changeRootViewController(storyboardName: "Main", viewControllerIdentifier: "LogInNavigationController")
         }

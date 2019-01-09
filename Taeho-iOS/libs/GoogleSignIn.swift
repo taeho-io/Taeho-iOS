@@ -17,7 +17,7 @@ internal class GoogleSignIn: NSObject, GIDSignInDelegate {
     internal let signInCallbackStream = PublishSubject<GIDGoogleUser>()
     internal let signOutCallbackStream = PublishSubject<GIDGoogleUser>()
 
-    private let userClient = GrpcClient.shared.UserClient()
+    private let userClient = GrpcClient.userClient
 
 
     private static var sharedGoogleSignIn: GoogleSignIn = {

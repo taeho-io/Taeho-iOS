@@ -15,9 +15,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var errorMessagesLabel: UILabel!
-
     let activityIndicator = UIActivityIndicatorView(style: .gray)
-    let userClient = GrpcClient.shared.UserClient()
+
+    let userClient = GrpcClient.userClient
 
 
     override func viewDidLoad() {

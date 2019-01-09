@@ -38,8 +38,8 @@ internal class Auth {
     internal let refreshAccessTokenStream = Observable<Int>.interval(RxTimeInterval(60 * 5), scheduler: MainScheduler.instance)
     internal var shouldRefreshAccessTokenPeriodically = true
 
-    private let authClient = GrpcClient.shared.AuthClient()
-    private let userClient = GrpcClient.shared.UserClient()
+    private let authClient = GrpcClient.authClient
+    private let userClient = GrpcClient.userClient
     private var _accessToken: String?
 
 
@@ -142,9 +142,7 @@ internal class Auth {
 
         _ = try? authClient.refresh(refreshRequest, completion: { (resp, result) in
             if result.statusCode == .unauthenticated {
-                self.refreshToken = nil
-                self.shouldRefreshAccessTokenPeriodically = false
-                changeRootViewController(storyboardName: "Main", viewControllerIdentifier: "LogInNavigationController")
+                signOut()
                 return
             }
 
@@ -156,6 +154,16 @@ internal class Auth {
         })
     }
 
+}
+
+func signOut() {
+    Auth.shared.refreshToken = nil
+    Auth.shared.shouldRefreshAccessTokenPeriodically = false
+    goToLogInController()
+}
+
+func goToLogInController() {
+    changeRootViewController(storyboardName: "Main", viewControllerIdentifier: "LogInNavigationController")
 }
 
 func changeRootViewController(storyboardName: String, viewControllerIdentifier: String) {
