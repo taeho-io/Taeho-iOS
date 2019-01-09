@@ -15,21 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Init GoogleSignIn
-        _ = GoogleSignIn.shared
-
-        // Show LogInNavigationController as needed.
-        if Auth.shared.refreshToken == nil {
-            self.changeRootViewController(storyboardName: "Main", viewControllerIdentifier: "LogInNavigationController")
-        }
-
         return true
-    }
-
-    func changeRootViewController(storyboardName: String, viewControllerIdentifier: String) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerIdentifier)
-        self.window?.rootViewController = viewController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

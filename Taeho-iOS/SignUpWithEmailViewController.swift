@@ -7,31 +7,25 @@
 //
 
 import UIKit
+import SwiftGRPC
 
-class SignUpViewController: UIViewController {
+class SignUpWithEmailViewController: UIActivityIndicatorViewController {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var errorMessagesLabel: UILabel!
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
-
-    let userClient = GrpcClient.userClient
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        view.addSubview(activityIndicator)
-        activityIndicator.frame = view.bounds
-
         emailText.becomeFirstResponder()
     }
 
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        activityIndicator.startAnimating()
+        showActivityIndicator()
         errorMessagesLabel.text = nil
 
         var registerRequest = User_RegisterRequest()
@@ -40,23 +34,30 @@ class SignUpViewController: UIViewController {
         registerRequest.password = passwordText.text ?? ""
         registerRequest.name = nameText.text ?? ""
 
+        userClient.metadata = Metadata()
         _ = try? userClient.register(registerRequest, completion: { (resp, result) in
-            DispatchQueue.main.async {
-                defer {
-                    self.activityIndicator.stopAnimating()
-                }
+            defer {
+                self.hideActivityIndicator()
+            }
 
-                guard result.statusCode == .ok else {
+            guard result.statusCode == .ok,
+                  let resp: User_RegisterResponse = resp
+                    else {
+                DispatchQueue.main.async {
                     self.errorMessagesLabel.text = result.statusMessage
                     self.errorMessagesLabel.sizeToFit()
-                    return
                 }
-                guard let refreshToken: String = resp?.refreshToken else {
-                    return
-                }
+                return
+            }
 
-                Auth.shared.refreshToken = refreshToken
-                self.performSegue(withIdentifier: "SegueSignUpToRoot", sender: self)
+            Auth.shared.updateUserTokenInfo(
+                    accessToken: resp.accessToken,
+                    refreshToken: resp.refreshToken,
+                    userId: resp.userID,
+                    expiresIn: resp.expiresIn)
+
+            DispatchQueue.main.async {
+                self.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
             }
         })
     }

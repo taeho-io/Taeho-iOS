@@ -25,6 +25,15 @@ internal class KeyStore {
 
     let keychain = Keychain(service: "io.taeho.taeho-ios-token")
 
+    var accessToken: String? {
+        get {
+            return keychain["accessToken"]
+        }
+        set {
+            keychain["accessToken"] = newValue
+        }
+    }
+
     var refreshToken: String? {
         get {
             return keychain["refreshToken"]

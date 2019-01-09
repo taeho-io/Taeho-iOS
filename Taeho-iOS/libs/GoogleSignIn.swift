@@ -7,17 +7,15 @@
 //
 
 import Foundation
-import GoogleSignIn
 import RxSwift
+import GoogleSignIn
 
 internal class GoogleSignIn: NSObject, GIDSignInDelegate {
 
     private let disposeBag = DisposeBag()
     
-    internal let signInCallbackStream = PublishSubject<GIDGoogleUser>()
-    internal let signOutCallbackStream = PublishSubject<GIDGoogleUser>()
-
-    private let userClient = GrpcClient.userClient
+    internal let signInWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?)>()
+    internal let signOutWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?)>()
 
 
     private static var sharedGoogleSignIn: GoogleSignIn = {
@@ -40,20 +38,23 @@ internal class GoogleSignIn: NSObject, GIDSignInDelegate {
 
     internal func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
+            signInWithGoogleCallbackStream.onNext(nil)
+
             print("\(error.localizedDescription)")
             return
         }
 
-        signInCallbackStream.onNext(user)
+        signInWithGoogleCallbackStream.onNext(user)
     }
 
-    internal func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
+    internal func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
+            signOutWithGoogleCallbackStream.onNext(nil)
+
             print("\(error.localizedDescription)")
             return
         }
 
-        signOutCallbackStream.onNext(user)
+        signOutWithGoogleCallbackStream.onNext(user)
     }
 }
