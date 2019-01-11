@@ -14,8 +14,8 @@ internal class GoogleSignIn: NSObject, GIDSignInDelegate {
 
     private let disposeBag = DisposeBag()
     
-    internal let signInWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?)>()
-    internal let signOutWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?)>()
+    internal let signInWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?, Error?)>()
+    internal let signOutWithGoogleCallbackStream = PublishSubject<(GIDGoogleUser?, Error?)>()
 
 
     private static var sharedGoogleSignIn: GoogleSignIn = {
@@ -38,23 +38,23 @@ internal class GoogleSignIn: NSObject, GIDSignInDelegate {
 
     internal func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            signInWithGoogleCallbackStream.onNext(nil)
+            signInWithGoogleCallbackStream.onNext((nil, error))
 
             print("\(error.localizedDescription)")
             return
         }
 
-        signInWithGoogleCallbackStream.onNext(user)
+        signInWithGoogleCallbackStream.onNext((user, nil))
     }
 
     internal func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            signOutWithGoogleCallbackStream.onNext(nil)
+            signOutWithGoogleCallbackStream.onNext((nil, error))
 
             print("\(error.localizedDescription)")
             return
         }
 
-        signOutWithGoogleCallbackStream.onNext(user)
+        signOutWithGoogleCallbackStream.onNext((user, nil))
     }
 }

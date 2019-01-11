@@ -30,39 +30,52 @@ class SignInViewController: UIActivityIndicatorViewController, GIDSignInUIDelega
 
     func subscribeSignInWithGoogleCallbackStream() {
         GoogleSignIn.shared.signInWithGoogleCallbackStream
-            .debug("signInWithGoogleCallbackStream")
-            .subscribe(onNext: { user in
-                guard let user: GIDGoogleUser = user else {
-                    self.hideActivityIndicator()
-                    return
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.asyncInstance)
+            .do { [weak self] in
+                self?.showActivityIndicator()
+            }
+            .flatMap { user, error in
+                return Observable<GIDGoogleUser>.create { observer in
+                    if let user: GIDGoogleUser = user {
+                        observer.onNext(user)
+                    }
+                    if let error: Error = error {
+                        observer.onError(error)
+                    }
+                    return Disposables.create()
                 }
-
+            }
+            .map { user -> User_SignInWithGoogleRequest in
                 var signInWithGoogleRequest = User_SignInWithGoogleRequest()
                 signInWithGoogleRequest.googleIDToken = user.authentication.idToken
                 signInWithGoogleRequest.name = user.profile.name
+                return signInWithGoogleRequest
+            }
+            .flatMap { signInWithGoogleRequest in
+                return userClient.signInWithGoogle(signInWithGoogleRequest, metadata: Metadata())
+            }
+            .catchErrorJustReturn(User_SignInWithGoogleResponse())
+            .subscribe(onNext: { [weak self] signInWithGoogleResponse in
+                defer { self?.hideActivityIndicator() }
 
-                userClient.metadata = Metadata()
-                _ = try? userClient.signInWithGoogle(signInWithGoogleRequest, completion: { (resp, result) in
-                    defer {
-                        self.hideActivityIndicator()
-                    }
+                if signInWithGoogleResponse.accessToken == "" {
+                    return
+                }
 
-                    guard result.statusCode == .ok,
-                          let resp: User_SignInWithGoogleResponse = resp
-                            else {
-                        return
-                    }
+                Auth.shared.updateUserTokenInfo(
+                        accessToken: signInWithGoogleResponse.accessToken,
+                        refreshToken: signInWithGoogleResponse.refreshToken,
+                        userId: signInWithGoogleResponse.userID,
+                        expiresIn: signInWithGoogleResponse.expiresIn)
 
-                    Auth.shared.updateUserTokenInfo(
-                            accessToken: resp.accessToken,
-                            refreshToken: resp.refreshToken,
-                            userId: resp.userID,
-                            expiresIn: resp.expiresIn)
-
-                    DispatchQueue.main.async {
-                        self.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
-                    }
-                })
+                DispatchQueue.main.async {
+                    self?.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
+                }
+            }, onError: { [weak self] error in
+                defer { self?.hideActivityIndicator() }
+            }, onDisposed: { [weak self] in
+                defer { self?.hideActivityIndicator() }
             })
             .disposed(by: disposeBag)
     }
@@ -70,13 +83,12 @@ class SignInViewController: UIActivityIndicatorViewController, GIDSignInUIDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initActivityIndicator()
         initGoogleSignInButton()
         hideNavigationBarBackButton()
         subscribeSignInWithGoogleCallbackStream()
     }
 
     @IBAction func signInWithGooglePressed(_ sender: Any) {
-        self.showActivityIndicator()
+        //self.showActivityIndicator()
     }
 }

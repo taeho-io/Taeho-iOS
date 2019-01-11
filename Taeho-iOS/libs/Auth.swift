@@ -34,7 +34,7 @@ internal class Auth {
     private let disposeBag = DisposeBag()
 
     internal let refreshAccessTokenStream = Observable<Int>
-        .interval(RxTimeInterval(RefreshAccessTokenInternal), scheduler: MainScheduler.instance)
+        .interval(RxTimeInterval(RefreshAccessTokenInternal), scheduler: MainScheduler.asyncInstance)
     internal let signOutStream = PublishSubject<AnyObject?>()
 
     internal var shouldRefreshAccessTokenPeriodically = false
@@ -49,17 +49,8 @@ internal class Auth {
         return sharedAuth
     }
 
-    func updateUserTokenInfo(accessToken: String, refreshToken: String, userId: Int64, expiresIn: Int64) {
-        shouldRefreshAccessTokenPeriodically = true
-        KeyStore.shared.accessToken = accessToken
-        KeyStore.shared.refreshToken = refreshToken
-        KeyStore.shared.userId = userId
-        KeyStore.shared.expiresIn = expiresIn
-    }
-
-    func subscribeRefreshAccessTokenStream() {
+    private func subscribeRefreshAccessTokenStream() {
         refreshAccessTokenStream
-            .debug("refreshAccessTokenStream")
             .subscribe(onNext: { _ in
                 guard self.shouldRefreshAccessTokenPeriodically else {
                     return
@@ -75,14 +66,14 @@ internal class Auth {
             .disposed(by: self.disposeBag)
     }
 
-    func subscribeSignOutStream() {
+    private func subscribeSignOutStream() {
         signOutStream
             .subscribe(onNext: { _ in
-                Auth.shared.shouldRefreshAccessTokenPeriodically = false
-                KeyStore.shared.refreshToken = nil
-                KeyStore.shared.userId = nil
-                KeyStore.shared.accessToken = nil
-                KeyStore.shared.expiresIn = nil
+                self.updateUserTokenInfo(false,
+                        accessToken: nil,
+                        refreshToken: nil,
+                        userId: nil,
+                        expiresIn: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -107,6 +98,27 @@ internal class Auth {
         set { KeyStore.shared.accessToken = newValue }
     }
 
+    internal func updateUserTokenInfo(_ shouldRefreshAccessTokenPeriodically: Bool = true,
+                                      accessToken: String?,
+                                      refreshToken: String?,
+                                      userId: Int64?,
+                                      expiresIn: Int64?) {
+        KeyStore.shared.accessToken = accessToken
+        KeyStore.shared.refreshToken = refreshToken
+        KeyStore.shared.userId = userId
+        KeyStore.shared.expiresIn = expiresIn
+
+        self.shouldRefreshAccessTokenPeriodically = shouldRefreshAccessTokenPeriodically
+
+        let metadata = Metadata()
+        let authHeaderKey: String = "Authorization".lowercased()
+        if let accessToken: String = Auth.shared.accessToken {
+            let authHeaderValue: String = "Bearer " + accessToken
+            try? metadata.add(key: authHeaderKey, value: authHeaderValue)
+        }
+        userClient.metadata = metadata
+    }
+
     internal func refreshAccessToken(completion: @escaping (AuthError?) -> Void) {
         guard let refreshToken: String = KeyStore.shared.refreshToken else {
             completion(AuthError.noRefreshToken)
@@ -124,25 +136,20 @@ internal class Auth {
             }
 
             guard result.statusCode == .ok,
-                  resp?.accessToken != "",
-                  resp?.refreshToken != "",
-                  resp?.expiresIn != 0,
-                  resp?.userID != 0
+                  let resp: Auth_RefreshResponse = resp
                     else {
                 completion(AuthError.invalidResponse)
                 return
             }
 
-            KeyStore.shared.accessToken = resp?.accessToken
-            KeyStore.shared.refreshToken = resp?.refreshToken
-            KeyStore.shared.userId = resp?.userID
-            KeyStore.shared.expiresIn = resp?.expiresIn
+            self.updateUserTokenInfo(
+                    accessToken: resp.accessToken,
+                    refreshToken: resp.refreshToken,
+                    userId: resp.userID,
+                    expiresIn: resp.expiresIn)
 
             completion(nil)
         })
-
-        //
-
     }
 
 }

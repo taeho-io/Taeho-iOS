@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 import SwiftGRPC
 import GoogleSignIn
 
 class SignInWithEmailViewController: UIActivityIndicatorViewController {
+
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -32,32 +35,30 @@ class SignInWithEmailViewController: UIActivityIndicatorViewController {
         logInRequest.email = emailText.text ?? ""
         logInRequest.password = passwordText.text ?? ""
 
-        userClient.metadata = Metadata()
-        _ = try? userClient.logIn(logInRequest, completion: { (resp, result) in
-            defer {
-                self.hideActivityIndicator()
-            }
+        userClient.logIn(logInRequest, metadata:Metadata())
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] resp in
+                defer { self?.hideActivityIndicator() }
 
-            guard result.statusCode == .ok,
-                  let resp: User_LogInResponse = resp
-                    else {
-                DispatchQueue.main.async {
-                    self.errorMessagesLabel.text = result.statusMessage
-                    self.errorMessagesLabel.sizeToFit()
+                Auth.shared.updateUserTokenInfo(
+                        accessToken: resp.accessToken,
+                        refreshToken: resp.refreshToken,
+                        userId: resp.userID,
+                        expiresIn: resp.expiresIn)
+
+                self?.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
+            }, onError: { [weak self] error in
+                defer { self?.hideActivityIndicator() }
+
+                if let rpcError: RPCError = error as? RPCError {
+                    self?.errorMessagesLabel.text = rpcError.callResult?.statusMessage
+                } else {
+                    self?.errorMessagesLabel.text = error.localizedDescription
                 }
-                return
-            }
-
-            Auth.shared.updateUserTokenInfo(
-                    accessToken: resp.accessToken,
-                    refreshToken: resp.refreshToken,
-                    userId: resp.userID,
-                    expiresIn: resp.expiresIn)
-
-            DispatchQueue.main.async {
-                self.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
-            }
-        })
+                self?.errorMessagesLabel.sizeToFit()
+            })
+            .disposed(by: disposeBag)
     }
 
 }

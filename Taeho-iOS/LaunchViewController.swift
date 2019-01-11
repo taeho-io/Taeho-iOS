@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 import SwiftGRPC
 
 class LaunchViewController: UIActivityIndicatorViewController {
 
+    let disposeBag = DisposeBag()
+
+    @IBOutlet weak var signOutButton: UIButton!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        signOutButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -28,32 +36,44 @@ class LaunchViewController: UIActivityIndicatorViewController {
         var refreshRequest = Auth_RefreshRequest()
         refreshRequest.refreshToken = refreshToken
 
-        authClient.metadata = Metadata()
-        _ = try? authClient.refresh(refreshRequest, completion: { (resp, result) in
-            defer {
-                self.hideActivityIndicator()
-            }
-
-            guard result.statusCode == .ok,
-                  resp?.accessToken != "",
-                  resp?.refreshToken != "",
-                  resp?.expiresIn != 0,
-                  resp?.userID != 0
-                    else {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "SegueLaunchToSignIn", sender: self)
+        authClient.refresh(refreshRequest, metadata: Metadata())
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.asyncInstance)
+            .retryWhen { error in
+                return error.enumerated().flatMap { [weak self] attempt, error -> Observable<Int> in
+                    if let rpcError: RPCError = error as? RPCError {
+                        if rpcError.callResult?.statusCode == .unauthenticated {
+                            return Observable.error(error)
+                        }
+                    }
+                    if attempt + 1 >= 3 {
+                        if let self = self {
+                            self.signOutButton.isHidden = false
+                        }
+                    }
+                    return Observable<Int>.timer(3.0, scheduler: MainScheduler.asyncInstance).take(1)
                 }
-                return
             }
+            .subscribe(onNext: { [weak self] resp in
+                defer { self?.hideActivityIndicator() }
 
-            KeyStore.shared.accessToken = resp?.accessToken
-            KeyStore.shared.refreshToken = resp?.refreshToken
-            KeyStore.shared.userId = resp?.userID
-            KeyStore.shared.expiresIn = resp?.expiresIn
+                Auth.shared.updateUserTokenInfo(
+                        accessToken: resp.accessToken,
+                        refreshToken: resp.refreshToken,
+                        userId: resp.userID,
+                        expiresIn: resp.expiresIn)
 
-            DispatchQueue.main.async {
-                self.parent?.performSegue(withIdentifier: "SegueLaunchToRootWithoutAnimation", sender: self)
-            }
-        })
+                self?.parent?.performSegue(withIdentifier: "SegueLaunchToRootWithoutAnimation", sender: self)
+            }, onError: { [weak self] error in
+                defer { self?.hideActivityIndicator() }
+
+                self?.performSegue(withIdentifier: "SegueLaunchToSignIn", sender: self)
+            })
+            .disposed(by: disposeBag)
     }
+
+    @IBAction func signOutPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "SegueLaunchToSignIn", sender: self)
+    }
+
 }

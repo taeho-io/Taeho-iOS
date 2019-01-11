@@ -15,7 +15,7 @@ class UIActivityIndicatorViewController: UIViewController {
 
     func initActivityIndicator() {
         view.addSubview(activityIndicator)
-        activityIndicator.frame = view.bounds
+        activityIndicator.center = view.center
     }
 
     func showActivityIndicator() {

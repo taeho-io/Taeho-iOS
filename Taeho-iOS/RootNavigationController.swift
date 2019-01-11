@@ -17,7 +17,6 @@ class RootNavigationController: UINavigationController {
 
     func subscribeSignOutStream() {
         Auth.shared.signOutStream
-            .debug("subscribeSignOutStream")
             .take(1)
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true)
