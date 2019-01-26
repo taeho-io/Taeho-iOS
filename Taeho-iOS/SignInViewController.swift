@@ -63,6 +63,11 @@ class SignInViewController: UIActivityIndicatorViewController, GIDSignInUIDelega
                     return
                 }
 
+                // return if already signed in.
+                if let accessToken: String = Auth.shared.accessToken {
+                    return
+                }
+
                 Auth.shared.updateUserTokenInfo(
                         accessToken: signInWithGoogleResponse.accessToken,
                         refreshToken: signInWithGoogleResponse.refreshToken,
