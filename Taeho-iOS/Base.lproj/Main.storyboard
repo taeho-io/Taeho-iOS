@@ -232,7 +232,11 @@
                                 <segue destination="ujQ-eN-doK" kind="presentation" id="cNi-2P-kpK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B20-Rk-v19"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B20-Rk-v19">
+                            <connections>
+                                <segue destination="yPx-MS-rRy" kind="show" id="3fu-kz-LMy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkX-bI-K1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,10 +464,10 @@
             </objects>
             <point key="canvasLocation" x="-3522" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Note Edit View Controller-->
         <scene sceneID="hkq-xe-I00">
             <objects>
-                <viewController id="yPx-MS-rRy" sceneMemberID="viewController">
+                <viewController id="yPx-MS-rRy" customClass="NoteEditViewController" customModule="Taeho_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sAb-la-hH6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -480,4 +484,5 @@
         <segue reference="dF7-Xc-m0K"/>
         <segue reference="cNi-2P-kpK"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

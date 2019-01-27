@@ -49,11 +49,11 @@ DEPENDENCIES:
   - KeychainAccess (~> 3.1.2)
   - RxCocoa (~> 4.4)
   - RxSwift (~> 4.4)
-  - SideMenu
+  - SideMenu (~> 5.0.3)
   - SwiftGRPC (~> 0.6.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - BoringSSL
     - GoogleSignIn
     - GoogleToolboxForMac
@@ -83,6 +83,6 @@ SPEC CHECKSUMS:
   SwiftGRPC: 465792c0e09dcb083d19d97137cee71b4f4f8b6f
   SwiftProtobuf: 7147b8ec19c8c0694a45155d989ea9e6dedaf51f
 
-PODFILE CHECKSUM: 5b6eed4c9701e825cffd211307dff38cff521c15
+PODFILE CHECKSUM: 0ca25676c4d0335aa7cae9c0a0767618cf2c4129
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0
