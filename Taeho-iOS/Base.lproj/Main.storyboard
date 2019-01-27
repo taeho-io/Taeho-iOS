@@ -10,11 +10,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="fix-Uq-Vk8">
+            <objects>
+                <navigationController id="ujQ-eN-doK" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fuj-oT-Ab4">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="uhz-Xt-Hwr" kind="relationship" relationship="rootViewController" id="jfN-pR-zQh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwM-l4-acf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5183" y="1238"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="jWX-Kb-eSK">
+            <objects>
+                <viewController id="uhz-Xt-Hwr" customClass="SideMenuViewController" customModule="Taeho_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LvU-8A-Hyi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz1-tm-kTX">
+                                <rect key="frame" x="35" y="108" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Notes"/>
+                                <connections>
+                                    <action selector="notesButtonPressed:" destination="uhz-Xt-Hwr" eventType="touchUpInside" id="eSA-bK-522"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ai-cH-AYi">
+                                <rect key="frame" x="27" y="172" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <action selector="settingsButtonPressed:" destination="uhz-Xt-Hwr" eventType="touchUpInside" id="YtU-do-CIF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WEZ-tF-lTS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VOv-my-xGT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="siN-mT-Ogn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4351" y="1238"/>
+        </scene>
         <!--Root Tab Bar Controller-->
         <scene sceneID="oR6-HO-CDA">
             <objects>
                 <tabBarController storyboardIdentifier="RootTabBarController" id="s6l-9m-mVd" customClass="RootTabBarController" customModule="Taeho_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qOV-ql-65N">
+                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qOV-ql-65N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,6 +140,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="dLk-Tg-wAF">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="9Wc-9w-3e8">
+                            <connections>
+                                <segue destination="ujQ-eN-doK" kind="presentation" id="Ugh-5P-7it"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Sign Out" id="2vs-Lc-omg">
                             <connections>
                                 <action selector="signOutButtonPressed:" destination="qGU-fa-eR5" id="tE0-AU-XMP"/>
@@ -169,7 +227,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="7Nf-5k-Ft8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="B20-Rk-v19"/>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="1uh-3x-SvC">
+                            <connections>
+                                <segue destination="ujQ-eN-doK" kind="presentation" id="cNi-2P-kpK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B20-Rk-v19"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkX-bI-K1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -415,5 +478,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="dF7-Xc-m0K"/>
+        <segue reference="cNi-2P-kpK"/>
     </inferredMetricsTieBreakers>
 </document>

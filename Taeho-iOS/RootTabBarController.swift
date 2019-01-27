@@ -11,6 +11,8 @@ import RxSwift
 
 class RootTabBarController: UITabBarController {
 
+    static var rootTabBarController: RootTabBarController?
+
     let disposeBag = DisposeBag()
 
 
@@ -27,6 +29,8 @@ class RootTabBarController: UITabBarController {
         super.viewDidLoad()
 
         subscribeSignOutStream()
+
+        RootTabBarController.rootTabBarController = self
     }
 
 }

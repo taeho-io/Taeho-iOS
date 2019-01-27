@@ -37,6 +37,7 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - SideMenu (5.0.3)
   - SwiftGRPC (0.6.0):
     - BoringSSL (~> 10.0)
     - gRPC-Core (~> 1.12.0)
@@ -44,10 +45,11 @@ PODS:
   - SwiftProtobuf (1.1.2)
 
 DEPENDENCIES:
-  - GoogleSignIn
+  - GoogleSignIn (~> 4.4.0)
   - KeychainAccess (~> 3.1.2)
   - RxCocoa (~> 4.4)
   - RxSwift (~> 4.4)
+  - SideMenu
   - SwiftGRPC (~> 0.6.0)
 
 SPEC REPOS:
@@ -62,6 +64,7 @@ SPEC REPOS:
     - RxAtomic
     - RxCocoa
     - RxSwift
+    - SideMenu
     - SwiftGRPC
     - SwiftProtobuf
 
@@ -76,9 +79,10 @@ SPEC CHECKSUMS:
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   SwiftGRPC: 465792c0e09dcb083d19d97137cee71b4f4f8b6f
   SwiftProtobuf: 7147b8ec19c8c0694a45155d989ea9e6dedaf51f
 
-PODFILE CHECKSUM: 0b292a418bda33b1ef08d2e8f518607fcecaa666
+PODFILE CHECKSUM: 5b6eed4c9701e825cffd211307dff38cff521c15
 
 COCOAPODS: 1.5.3

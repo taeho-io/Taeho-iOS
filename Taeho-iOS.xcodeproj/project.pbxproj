@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17C3506AE2D3122C4FF31FA6 /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */; };
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
+		74068DA321FDA173003F6B8B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068DA221FDA173003F6B8B /* SideMenuViewController.swift */; };
 		742D115A21FD727E00DEA23B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D115921FD727E00DEA23B /* SettingsTableViewController.swift */; };
 		744B5C4721EB0E8B00D09BAF /* user.grpc-rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B5C4621EB0E8A00D09BAF /* user.grpc-rx.swift */; };
 		74A19B0B21E71275006467FA /* LaunchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0A21E71275006467FA /* LaunchNavigationController.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		533A2DB9BAB7208E7F7111DA /* Pods-Taeho-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		74068DA221FDA173003F6B8B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		742D115921FD727E00DEA23B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		744B5C4621EB0E8A00D09BAF /* user.grpc-rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "user.grpc-rx.swift"; sourceTree = "<group>"; };
 		74A19B0A21E71275006467FA /* LaunchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNavigationController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				74D568BE21E043E500E6B6E7 /* AppDelegate.swift */,
 				74D568C721E043E700E6B6E7 /* LaunchScreen.storyboard */,
 				74D568C221E043E500E6B6E7 /* Main.storyboard */,
+				74068DA221FDA173003F6B8B /* SideMenuViewController.swift */,
 				74A19B0A21E71275006467FA /* LaunchNavigationController.swift */,
 				74A19B0C21E71340006467FA /* LaunchViewController.swift */,
 				74A19B1021E722E7006467FA /* UIActivityIndicatorViewController.swift */,
@@ -468,6 +471,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -482,6 +486,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -515,6 +520,7 @@
 				742D115A21FD727E00DEA23B /* SettingsTableViewController.swift in Sources */,
 				74BD698D21E47A630025AA61 /* const.swift in Sources */,
 				744B5C4721EB0E8B00D09BAF /* user.grpc-rx.swift in Sources */,
+				74068DA321FDA173003F6B8B /* SideMenuViewController.swift in Sources */,
 				74BD699321E5ABED0025AA61 /* NotesViewController.swift in Sources */,
 				74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */,
 				74E5CA3D21FD687300A1B51B /* NotesTableViewController.swift in Sources */,
