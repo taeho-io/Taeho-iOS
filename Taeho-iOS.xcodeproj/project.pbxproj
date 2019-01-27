@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17C3506AE2D3122C4FF31FA6 /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */; };
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
+		742D115A21FD727E00DEA23B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D115921FD727E00DEA23B /* SettingsTableViewController.swift */; };
 		744B5C4721EB0E8B00D09BAF /* user.grpc-rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B5C4621EB0E8A00D09BAF /* user.grpc-rx.swift */; };
 		74A19B0B21E71275006467FA /* LaunchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0A21E71275006467FA /* LaunchNavigationController.swift */; };
 		74A19B0D21E71340006467FA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0C21E71340006467FA /* LaunchViewController.swift */; };
@@ -34,9 +35,10 @@
 		74D5691121E1DCF300E6B6E7 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5690F21E1DCF300E6B6E7 /* user.pb.swift */; };
 		74D5691321E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5691221E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift */; };
 		74D5691A21E2939700E6B6E7 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5691921E2939700E6B6E7 /* Auth.swift */; };
-		74D5691C21E29D2400E6B6E7 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5691B21E29D2400E6B6E7 /* RootNavigationController.swift */; };
 		74E3960621EBCD1C00409E99 /* auth.grpc-rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3960421EBCD1B00409E99 /* auth.grpc-rx.swift */; };
 		74E3960721EBCD1C00409E99 /* note.grpc-rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3960521EBCD1B00409E99 /* note.grpc-rx.swift */; };
+		74E5CA3D21FD687300A1B51B /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E5CA3C21FD687300A1B51B /* NotesTableViewController.swift */; };
+		74E5CA3F21FD6A6800A1B51B /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E5CA3E21FD6A6800A1B51B /* RootTabBarController.swift */; };
 		ED277A8CA8B90DB799A6BA6F /* Pods_Taeho_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9E1A2B5B4518ED2C45BFF6 /* Pods_Taeho_iOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,7 @@
 /* Begin PBXFileReference section */
 		533A2DB9BAB7208E7F7111DA /* Pods-Taeho-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		742D115921FD727E00DEA23B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		744B5C4621EB0E8A00D09BAF /* user.grpc-rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "user.grpc-rx.swift"; sourceTree = "<group>"; };
 		74A19B0A21E71275006467FA /* LaunchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNavigationController.swift; sourceTree = "<group>"; };
 		74A19B0C21E71340006467FA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -91,9 +94,10 @@
 		74D5690F21E1DCF300E6B6E7 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
 		74D5691221E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithEmailViewController.swift; sourceTree = "<group>"; };
 		74D5691921E2939700E6B6E7 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		74D5691B21E29D2400E6B6E7 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		74E3960421EBCD1B00409E99 /* auth.grpc-rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "auth.grpc-rx.swift"; sourceTree = "<group>"; };
 		74E3960521EBCD1B00409E99 /* note.grpc-rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "note.grpc-rx.swift"; sourceTree = "<group>"; };
+		74E5CA3C21FD687300A1B51B /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
+		74E5CA3E21FD6A6800A1B51B /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		7F2CC799CFD71C272BB51617 /* Pods-Taeho-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taeho_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5D5AC2B7F9654406AE23DE /* Pods-Taeho-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOS/Pods-Taeho-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,8 +194,10 @@
 				74A19B0E21E71701006467FA /* SignInViewController.swift */,
 				74D5690921E1D2B900E6B6E7 /* SignInWithEmailViewController.swift */,
 				74D5691221E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift */,
-				74D5691B21E29D2400E6B6E7 /* RootNavigationController.swift */,
+				74E5CA3E21FD6A6800A1B51B /* RootTabBarController.swift */,
 				74BD699221E5ABED0025AA61 /* NotesViewController.swift */,
+				74E5CA3C21FD687300A1B51B /* NotesTableViewController.swift */,
+				742D115921FD727E00DEA23B /* SettingsTableViewController.swift */,
 				74D568C521E043E700E6B6E7 /* Assets.xcassets */,
 				74D568CA21E043E700E6B6E7 /* Info.plist */,
 				74BD698C21E47A630025AA61 /* const.swift */,
@@ -497,19 +503,21 @@
 				74D5691021E1DCF300E6B6E7 /* user.grpc.swift in Sources */,
 				74BD699521E5B5FA0025AA61 /* grpcClients.swift in Sources */,
 				74D5691321E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift in Sources */,
-				74D5691C21E29D2400E6B6E7 /* RootNavigationController.swift in Sources */,
 				74A19B1121E722E7006467FA /* UIActivityIndicatorViewController.swift in Sources */,
 				74D5690A21E1D2B900E6B6E7 /* SignInWithEmailViewController.swift in Sources */,
 				74D5691A21E2939700E6B6E7 /* Auth.swift in Sources */,
 				74A19B0D21E71340006467FA /* LaunchViewController.swift in Sources */,
 				74D5690021E0627400E6B6E7 /* auth.grpc.swift in Sources */,
 				74A19B0F21E71701006467FA /* SignInViewController.swift in Sources */,
+				74E5CA3F21FD6A6800A1B51B /* RootTabBarController.swift in Sources */,
 				74D5691121E1DCF300E6B6E7 /* user.pb.swift in Sources */,
 				74E3960621EBCD1C00409E99 /* auth.grpc-rx.swift in Sources */,
+				742D115A21FD727E00DEA23B /* SettingsTableViewController.swift in Sources */,
 				74BD698D21E47A630025AA61 /* const.swift in Sources */,
 				744B5C4721EB0E8B00D09BAF /* user.grpc-rx.swift in Sources */,
 				74BD699321E5ABED0025AA61 /* NotesViewController.swift in Sources */,
 				74BD698F21E47AC30025AA61 /* GoogleSignIn.swift in Sources */,
+				74E5CA3D21FD687300A1B51B /* NotesTableViewController.swift in Sources */,
 				74A19B0B21E71275006467FA /* LaunchNavigationController.swift in Sources */,
 				74E3960721EBCD1C00409E99 /* note.grpc-rx.swift in Sources */,
 				74D568FF21E0627400E6B6E7 /* auth.pb.swift in Sources */,

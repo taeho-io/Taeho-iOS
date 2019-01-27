@@ -1,16 +1,15 @@
 //
-//  RootNavigationController.swift
+//  RootTabBarController.swift
 //  Taeho-iOS
 //
-//  Created by Taeho Kim on 1/6/19.
+//  Created by Taeho Kim on 1/26/19.
 //  Copyright © 2019 taeho.io. All rights reserved.
 //
 
 import UIKit
 import RxSwift
-import RxCocoa
 
-class RootNavigationController: UINavigationController {
+class RootTabBarController: UITabBarController {
 
     let disposeBag = DisposeBag()
 
