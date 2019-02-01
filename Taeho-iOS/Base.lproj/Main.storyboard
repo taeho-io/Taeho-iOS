@@ -369,9 +369,6 @@
                                 <rect key="frame" x="166" y="296" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In"/>
-                                <connections>
-                                    <action selector="logInButtonPressed:" destination="aiF-ur-0lL" eventType="touchUpInside" id="gSP-J7-c6g"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kt-Wt-9J1" userLabel="ErrorMessages">
                                 <rect key="frame" x="47" y="351" width="280" height="24"/>
@@ -388,6 +385,7 @@
                         <outlet property="emailText" destination="rTl-Un-fFt" id="smi-ad-6X6"/>
                         <outlet property="errorMessagesLabel" destination="9Kt-Wt-9J1" id="i9T-6U-LkN"/>
                         <outlet property="passwordText" destination="uac-d2-QES" id="R3M-Jx-3yG"/>
+                        <outlet property="signInButton" destination="djS-DJ-Yuc" id="u9g-T3-B52"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thX-zn-Gf8" userLabel="First Responder" sceneMemberID="firstResponder"/>

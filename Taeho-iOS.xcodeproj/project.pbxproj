@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		17C3506AE2D3122C4FF31FA6 /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */; };
+		3659D64FB4F5CBE370918615 /* SignInWithEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */; };
+		3659D82861A1D5CAFBA4FB8D /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */; };
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
 		74068DA321FDA173003F6B8B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068DA221FDA173003F6B8B /* SideMenuViewController.swift */; };
 		74068DF221FDD95B003F6B8B /* NoteEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068DF121FDD95B003F6B8B /* NoteEditViewController.swift */; };
@@ -62,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailModel.swift; sourceTree = "<group>"; };
+		3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		533A2DB9BAB7208E7F7111DA /* Pods-Taeho-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		74068DA221FDA173003F6B8B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				74D568C521E043E700E6B6E7 /* Assets.xcassets */,
 				74D568CA21E043E700E6B6E7 /* Info.plist */,
 				74BD698C21E47A630025AA61 /* const.swift */,
+				3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */,
+				3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */,
 			);
 			path = "Taeho-iOS";
 			sourceTree = "<group>";
@@ -534,6 +540,8 @@
 				74D5690221E1CD5000E6B6E7 /* KeyStore.swift in Sources */,
 				74BD699921E5BAE70025AA61 /* note.pb.swift in Sources */,
 				74BD699821E5BAE70025AA61 /* note.grpc.swift in Sources */,
+				3659D64FB4F5CBE370918615 /* SignInWithEmailModel.swift in Sources */,
+				3659D82861A1D5CAFBA4FB8D /* ValidationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
