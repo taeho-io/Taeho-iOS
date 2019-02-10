@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17C3506AE2D3122C4FF31FA6 /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995D887E8606A94CA2DB4701 /* Pods_Taeho_iOS.framework */; };
-		3659D64FB4F5CBE370918615 /* SignInWithEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */; };
+		3659D64FB4F5CBE370918615 /* SignInWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659D1891B571E66F9C36EE0 /* SignInWithEmailViewModel.swift */; };
 		3659D82861A1D5CAFBA4FB8D /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */; };
 		696FDA98828001C16B646091 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01B8E876A2A68A139B020ED /* Pods_Taeho_iOSUITests.framework */; };
 		74068DA321FDA173003F6B8B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068DA221FDA173003F6B8B /* SideMenuViewController.swift */; };
@@ -64,7 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailModel.swift; sourceTree = "<group>"; };
+		3659D1891B571E66F9C36EE0 /* SignInWithEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewModel.swift; sourceTree = "<group>"; };
 		3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		533A2DB9BAB7208E7F7111DA /* Pods-Taeho-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A922916C78C044FBE5BFF37 /* Pods-Taeho-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taeho-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +201,8 @@
 				74A19B1021E722E7006467FA /* UIActivityIndicatorViewController.swift */,
 				74A19B0E21E71701006467FA /* SignInViewController.swift */,
 				74D5690921E1D2B900E6B6E7 /* SignInWithEmailViewController.swift */,
+				3659D1891B571E66F9C36EE0 /* SignInWithEmailViewModel.swift */,
+				3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */,
 				74D5691221E1E99D00E6B6E7 /* SignUpWithEmailViewController.swift */,
 				74E5CA3E21FD6A6800A1B51B /* RootTabBarController.swift */,
 				74068DA221FDA173003F6B8B /* SideMenuViewController.swift */,
@@ -211,8 +213,6 @@
 				74D568C521E043E700E6B6E7 /* Assets.xcassets */,
 				74D568CA21E043E700E6B6E7 /* Info.plist */,
 				74BD698C21E47A630025AA61 /* const.swift */,
-				3659D1891B571E66F9C36EE0 /* SignInWithEmailModel.swift */,
-				3659D708384E30AE4170A3C3 /* ValidationViewModel.swift */,
 			);
 			path = "Taeho-iOS";
 			sourceTree = "<group>";
@@ -540,7 +540,7 @@
 				74D5690221E1CD5000E6B6E7 /* KeyStore.swift in Sources */,
 				74BD699921E5BAE70025AA61 /* note.pb.swift in Sources */,
 				74BD699821E5BAE70025AA61 /* note.grpc.swift in Sources */,
-				3659D64FB4F5CBE370918615 /* SignInWithEmailModel.swift in Sources */,
+				3659D64FB4F5CBE370918615 /* SignInWithEmailViewModel.swift in Sources */,
 				3659D82861A1D5CAFBA4FB8D /* ValidationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,7 +720,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -736,7 +739,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -753,7 +759,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -771,7 +781,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -788,7 +802,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -805,7 +823,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 729QK9WGMT;
 				INFOPLIST_FILE = "Taeho-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.taeho.family.Taeho-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

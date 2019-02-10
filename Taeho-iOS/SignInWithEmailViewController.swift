@@ -34,59 +34,59 @@ class SignInWithEmailViewController: UIActivityIndicatorViewController {
 
     func createViewModelBinding() {
         emailText.rx.text.orEmpty
-                .bind(to: viewModel.emailViewModel.data)
-                .disposed(by: disposeBag)
+            .bind(to: viewModel.emailViewModel.data)
+            .disposed(by: disposeBag)
 
         passwordText.rx.text.orEmpty
-                .bind(to: viewModel.passwordViewModel.data)
-                .disposed(by: disposeBag)
+            .bind(to: viewModel.passwordViewModel.data)
+            .disposed(by: disposeBag)
 
         signInButton.rx.tap
-                .do(onNext: { [unowned self] in
-                    self.emailText.resignFirstResponder()
-                    self.passwordText.resignFirstResponder()
-                })
-                .subscribe(onNext: { [unowned self] in
-                    if !self.viewModel.validate() {
-                        self.errorMessagesLabel.sizeToFit()
-                        return
-                    }
-                    self.viewModel.signInWithEmail()
+            .do(onNext: { [unowned self] in
+                self.emailText.resignFirstResponder()
+                self.passwordText.resignFirstResponder()
+            })
+            .subscribe(onNext: { [unowned self] in
+                if !self.viewModel.validate() {
+                    self.errorMessagesLabel.sizeToFit()
+                    return
+                }
+                self.viewModel.signInWithEmail()
 
-                }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     func createCallbacks() {
         viewModel.isLoading.asObservable()
-                .bind { isLoading in
-                    if isLoading {
-                        self.showActivityIndicator()
-                    } else {
-                        self.hideActivityIndicator()
-                    }
+            .bind { isLoading in
+                if isLoading {
+                    self.showActivityIndicator()
+                } else {
+                    self.hideActivityIndicator()
                 }
-                .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
         viewModel.isSuccess.asObservable()
-                .bind { isSuccess in
-                    if isSuccess {
-                        DispatchQueue.main.async {
-                            self.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
-                        }
+            .bind { isSuccess in
+                if isSuccess {
+                    DispatchQueue.main.async {
+                        self.parent?.performSegue(withIdentifier: "SegueLaunchToRoot", sender: self)
                     }
                 }
-                .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
         viewModel.errorMsg.asObservable()
-                .bind(to: self.errorMessagesLabel.rx.text)
-                .disposed(by: disposeBag)
+            .bind(to: self.errorMessagesLabel.rx.text)
+            .disposed(by: disposeBag)
 
         viewModel.emailViewModel.data.asObservable()
-                .bind(to: self.emailText.rx.text)
-                .disposed(by: disposeBag)
+            .bind(to: self.emailText.rx.text)
+            .disposed(by: disposeBag)
 
         viewModel.passwordViewModel.data.asObservable()
-                .bind(to: self.passwordText.rx.text)
-                .disposed(by: disposeBag)
+            .bind(to: self.passwordText.rx.text)
+            .disposed(by: disposeBag)
     }
 }

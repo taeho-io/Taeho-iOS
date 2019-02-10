@@ -64,30 +64,29 @@ class SignInWithEmailViewModel {
         logInRequest.password = model.password
 
         userClient.logIn(logInRequest, metadata: Metadata())
-                .subscribe(onNext: { resp in
-                    self.emailViewModel.data.accept("")
-                    self.passwordViewModel.data.accept("")
-                    self.errorMsg.accept("")
+            .subscribe(onNext: { resp in
+                self.emailViewModel.data.accept("")
+                self.passwordViewModel.data.accept("")
+                self.errorMsg.accept("")
 
-                    Auth.shared.updateUserTokenInfo(
-                            accessToken: resp.accessToken,
-                            refreshToken: resp.refreshToken,
-                            userId: resp.userID,
-                            expiresIn: resp.expiresIn)
+                Auth.shared.updateUserTokenInfo(
+                        accessToken: resp.accessToken,
+                        refreshToken: resp.refreshToken,
+                        userId: resp.userID,
+                        expiresIn: resp.expiresIn)
 
-                    self.isLoading.accept(false)
-                    self.isSuccess.accept(true)
-                }, onError: { error in
-                    self.isLoading.accept(false)
-                    self.isSuccess.accept(false)
+                self.isLoading.accept(false)
+                self.isSuccess.accept(true)
+            }, onError: { error in
+                self.isLoading.accept(false)
+                self.isSuccess.accept(false)
 
-                    if let rpcError: RPCError = error as? RPCError {
-                        self.errorMsg.accept(rpcError.callResult?.statusMessage)
-                    } else {
-                        self.errorMsg.accept(error.localizedDescription)
-                    }
-                })
-                .disposed(by: disposeBag)
-
+                if let rpcError: RPCError = error as? RPCError {
+                    self.errorMsg.accept(rpcError.callResult?.statusMessage)
+                } else {
+                    self.errorMsg.accept(error.localizedDescription)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
