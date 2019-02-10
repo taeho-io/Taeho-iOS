@@ -9,13 +9,19 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxKeyboard
+import Then
 
 class NoteEditViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
-    @IBOutlet weak var noteTextView: UITextView!
-
+    let noteTextView = UITextView(frame: .zero).then {
+        $0.alwaysBounceVertical = true
+        $0.keyboardDismissMode = .interactive
+        $0.backgroundColor = .clear
+        $0.font = .systemFont(ofSize: 16)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +29,19 @@ class NoteEditViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.hidesBarsOnSwipe = true
 
-        noteTextView.isUserInteractionEnabled = true
-        noteTextView.keyboardDismissMode = .onDrag
+        noteTextView.frame = view.frame
+        self.view.addSubview(self.noteTextView)
+
+        RxKeyboard.instance.visibleHeight
+          .drive(onNext: { [weak self] keyboardVisibleHeight in
+              self?.view.setNeedsLayout()
+              UIView.animate(withDuration: 0) {
+                  self?.noteTextView.contentInset.bottom = keyboardVisibleHeight
+                  self?.noteTextView.scrollIndicatorInsets.bottom = (self?.noteTextView.contentInset.bottom)!
+                  self?.view.layoutIfNeeded()
+              }
+          })
+            .disposed(by: self.disposeBag)
 
         noteTextView.rx.text.subscribe(onNext: { noteText in
             print(noteText)
@@ -32,8 +49,12 @@ class NoteEditViewController: UIViewController {
         .disposed(by: disposeBag)
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        noteTextView.endEditing(true)
-    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
+        if self.noteTextView.contentInset.bottom == 0 {
+            self.noteTextView.contentInset.bottom = 0
+            self.noteTextView.scrollIndicatorInsets.bottom = self.noteTextView.contentInset.bottom
+        }
+    }
 }

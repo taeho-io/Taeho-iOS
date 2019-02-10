@@ -12,6 +12,8 @@ target 'Taeho-iOS' do
   pod 'KeychainAccess', '~> 3.1.2'
   pod 'GoogleSignIn', '~> 4.4.0'
   pod 'SideMenu', '~> 5.0.3'
+  pod 'RxKeyboard', '~> 0.9.0'
+  pod 'Then', '~> 2.4.0'
 
   target 'Taeho-iOSTests' do
     inherit! :search_paths
