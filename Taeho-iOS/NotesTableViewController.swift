@@ -106,4 +106,9 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        print("refresh!")
+        sender.endRefreshing()
+    }
+
 }
