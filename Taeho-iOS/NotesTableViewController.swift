@@ -21,7 +21,8 @@ class NotesTableViewController: UITableViewController {
 
     let activityIndicator = UIActivityIndicatorView(style: .gray)
 
-    var notes: [Note_NoteMessage] = []
+    let notes: BehaviorSubject<[Note_NoteMessage]> = BehaviorSubject(value: [])
+    var tappedNoteRow: Int? = nil
 
     let disposeBag = DisposeBag()
 
@@ -43,6 +44,25 @@ class NotesTableViewController: UITableViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let noteEditViewController = segue.destination as? NoteEditViewController, let row: Int = tappedNoteRow {
+            try? noteEditViewController.noteTextView.text = self.notes.value()[row].body
+
+            noteEditViewController.noteTextView.rx.text
+                .debounce(1, scheduler: MainScheduler.asyncInstance)
+                .subscribe(onNext: { noteText in
+                    if let noteText: String = noteText {
+                        var notes = try? self.notes.value()
+                        notes?[row].body = noteText
+                        if let notes: [Note_NoteMessage] = notes {
+                            self.notes.onNext(notes)
+                        }
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,66 +74,39 @@ class NotesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
+        // Disable dataSource and delegate to use tableview rx bind to tableview
+        tableView.dataSource = nil
+        tableView.delegate = nil
+
         tableView.rowHeight = 100
+
+        notes.asObserver()
+            .bind(to: tableView.rx.items(cellIdentifier: "NoteCell", cellType: NotesTableViewCell.self)) { row, element, cell in
+                cell.title.text = element.title
+                cell.body.text = element.body
+                cell.updatedAt.text = String(element.updatedAt)
+            }
+            .disposed(by: self.disposeBag)
+
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.tappedNoteRow = indexPath.row
+                self?.performSegue(withIdentifier: "SegueNoteEditView", sender: self)
+            })
+            .disposed(by: disposeBag)
 
         showActivityIndicator()
         listNotes(offset: 0, limit: 20)
             .subscribe(onNext: { resp in
-                self.notes = resp.notes
+                self.notes.onNext(resp.notes)
+
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                     self.hideActivityIndicator()
                 }
             }, onError: { error in
                 self.hideActivityIndicator()
             })
             .disposed(by: disposeBag)
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return notes.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NotesTableViewCell
-
-        // Configure the cell...
-        let note = notes[indexPath.row]
-        cell.title.text = note.title
-        cell.body.text = note.body
-        cell.updatedAt.text = String(note.updatedAt)
-
-        return cell
-    }
-
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        Note.shared.note = notes[indexPath.row]
-        performSegue(withIdentifier: "SegueNoteEditView", sender: self)
     }
 
     /*
@@ -158,15 +151,15 @@ class NotesTableViewController: UITableViewController {
         showActivityIndicator()
         listNotes(offset: 0, limit: 20)
             .subscribe(onNext: { resp in
-                self.notes = resp.notes
+                self.notes.onNext(resp.notes)
+
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.hideActivityIndicator()
                     sender.endRefreshing()
+                    self.hideActivityIndicator()
                 }
             }, onError: { error in
-                self.hideActivityIndicator()
                 sender.endRefreshing()
+                self.hideActivityIndicator()
             })
             .disposed(by: disposeBag)
     }
