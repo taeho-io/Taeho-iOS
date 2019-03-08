@@ -12,6 +12,23 @@ import RxCocoa
 import RxKeyboard
 import Then
 
+class Note {
+
+    var note: Note_NoteMessage?
+
+    private init() {}
+
+    private static var sharedNote: Note = {
+        let note = Note()
+        return note
+    }()
+
+    class var shared: Note {
+        return sharedNote
+    }
+
+}
+
 class NoteEditViewController: UIViewController {
 
     let disposeBag = DisposeBag()
@@ -44,9 +61,15 @@ class NoteEditViewController: UIViewController {
             .disposed(by: self.disposeBag)
 
         noteTextView.rx.text.subscribe(onNext: { noteText in
-            print(noteText)
+            if var note = Note.shared.note, let noteText = noteText {
+                note.body = noteText
+            }
         })
         .disposed(by: disposeBag)
+
+        if let note = Note.shared.note {
+            noteTextView.text = note.body
+        }
     }
 
     override func viewDidLayoutSubviews() {

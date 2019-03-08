@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import SwiftGRPC
 
 class NotesTableViewCell: UITableViewCell {
@@ -107,6 +108,12 @@ class NotesTableViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        Note.shared.note = notes[indexPath.row]
+        performSegue(withIdentifier: "SegueNoteEditView", sender: self)
     }
 
     /*

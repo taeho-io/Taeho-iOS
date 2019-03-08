@@ -235,7 +235,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B20-Rk-v19">
                             <connections>
-                                <segue destination="yPx-MS-rRy" kind="show" id="3fu-kz-LMy"/>
+                                <segue destination="yPx-MS-rRy" kind="show" identifier="SegueNoteEditView" id="3fu-kz-LMy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
