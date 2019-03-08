@@ -7,19 +7,45 @@
 //
 
 import UIKit
+import RxSwift
+import SwiftGRPC
 
 class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
+    @IBOutlet weak var updatedAt: UILabel!
 }
 
 class NotesTableViewController: UITableViewController {
 
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
+
     var notes: [Note_NoteMessage] = []
 
+    let disposeBag = DisposeBag()
+
+
+    func initActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+    }
+
+    func showActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+    }
+
+    func hideActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        initActivityIndicator()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,19 +53,20 @@ class NotesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        var note1: Note_NoteMessage = Note_NoteMessage()
-        note1.title = "Taeho's Family"
-        note1.bodyType = Note_BodyType.markdown
-        note1.body = "famfamfam"
-        notes.append(note1)
-
-        var note2: Note_NoteMessage = Note_NoteMessage()
-        note2.title = "Taeho's Diary"
-        note2.bodyType = Note_BodyType.markdown
-        note2.body = "bodybodybodybodybodybodybodybodybodybodybodybodybodybodybodybodybodybody"
-        notes.append(note2)
-
         tableView.rowHeight = 100
+
+        showActivityIndicator()
+        listNotes(offset: 0, limit: 20)
+            .subscribe(onNext: { resp in
+                self.notes = resp.notes
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.hideActivityIndicator()
+                }
+            }, onError: { error in
+                self.hideActivityIndicator()
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Table view data source
@@ -61,6 +88,7 @@ class NotesTableViewController: UITableViewController {
         let note = notes[indexPath.row]
         cell.title.text = note.title
         cell.body.text = note.body
+        cell.updatedAt.text = String(note.updatedAt)
 
         return cell
     }
@@ -106,9 +134,34 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
+    func listNotes(offset: Int64 = 0, limit: Int64 = 20) -> Observable<Note_ListResponse> {
+        var listRequest = Note_ListRequest()
+        listRequest.offset = offset
+        listRequest.limit = limit
+
+        let metadata = Metadata()
+        if let accessToken: String = Auth.shared.accessToken {
+            try? metadata.add(key: "authorization", value: "Bearer " + accessToken)
+        }
+
+        return noteClient.list(listRequest, metadata: metadata)
+    }
+
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        print("refresh!")
-        sender.endRefreshing()
+        showActivityIndicator()
+        listNotes(offset: 0, limit: 20)
+            .subscribe(onNext: { resp in
+                self.notes = resp.notes
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.hideActivityIndicator()
+                    sender.endRefreshing()
+                }
+            }, onError: { error in
+                self.hideActivityIndicator()
+                sender.endRefreshing()
+            })
+            .disposed(by: disposeBag)
     }
 
 }

@@ -218,6 +218,7 @@
                                 <connections>
                                     <outlet property="body" destination="eaf-dn-rCQ" id="P1h-AR-m4Q"/>
                                     <outlet property="title" destination="0Mv-QP-Thi" id="maZ-1h-gzm"/>
+                                    <outlet property="updatedAt" destination="xru-CI-nee" id="CHA-Na-mdr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
