@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftGRPC
+import SwiftProtobuf
 
 class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
@@ -53,8 +54,13 @@ class NotesTableViewController: UITableViewController {
                 .subscribe(onNext: { noteText in
                     if let noteText: String = noteText {
                         var notes = try? self.notes.value()
+                        if noteText == notes?[row].body {
+                            return
+                        }
                         notes?[row].body = noteText
-                        if let notes: [Note_NoteMessage] = notes {
+                        notes?[row].updatedAt = Google_Protobuf_Timestamp.init(date: Date())
+                        if var notes: [Note_NoteMessage] = notes {
+                            notes.sort(by: { $0.updatedAt.seconds > $1.updatedAt.seconds})
                             self.notes.onNext(notes)
                         }
                     }
