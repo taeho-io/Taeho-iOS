@@ -80,11 +80,11 @@ class NotesTableViewController: UITableViewController {
 
         tableView.rowHeight = 100
 
-        notes.asObserver()
+        notes
             .bind(to: tableView.rx.items(cellIdentifier: "NoteCell", cellType: NotesTableViewCell.self)) { row, element, cell in
                 cell.title.text = element.title
                 cell.body.text = element.body
-                cell.updatedAt.text = String(element.updatedAt)
+                cell.updatedAt.text = element.updatedAt.textFormatString()
             }
             .disposed(by: self.disposeBag)
 
@@ -92,6 +92,11 @@ class NotesTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] indexPath in
                 self?.tappedNoteRow = indexPath.row
                 self?.performSegue(withIdentifier: "SegueNoteEditView", sender: self)
+            })
+            .disposed(by: disposeBag)
+
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] indexPath in
             })
             .disposed(by: disposeBag)
 
@@ -109,41 +114,12 @@ class NotesTableViewController: UITableViewController {
             .disposed(by: disposeBag)
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func listNotes(offset: Int64 = 0, limit: Int64 = 20) -> Observable<Note_ListResponse> {
         var listRequest = Note_ListRequest()
         listRequest.offset = offset
         listRequest.limit = limit
 
-        let metadata = Metadata()
-        if let accessToken: String = Auth.shared.accessToken {
-            try? metadata.add(key: "authorization", value: "Bearer " + accessToken)
-        }
-
+        let metadata = Auth.shared.newMetadata()
         return noteClient.list(listRequest, metadata: metadata)
     }
 

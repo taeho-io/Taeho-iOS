@@ -68,17 +68,49 @@ struct Note_CreateRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var createdBy: Int64 = 0
+  var createdBy: Int64 {
+    get {return _storage._createdBy}
+    set {_uniqueStorage()._createdBy = newValue}
+  }
 
-  var bodyType: Note_BodyType = .text
+  var bodyType: Note_BodyType {
+    get {return _storage._bodyType}
+    set {_uniqueStorage()._bodyType = newValue}
+  }
 
-  var title: String = String()
+  var title: String {
+    get {return _storage._title}
+    set {_uniqueStorage()._title = newValue}
+  }
 
-  var body: String = String()
+  var body: String {
+    get {return _storage._body}
+    set {_uniqueStorage()._body = newValue}
+  }
+
+  var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._createdAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._createdAt = newValue}
+  }
+  /// Returns true if `createdAt` has been explicitly set.
+  var hasCreatedAt: Bool {return _storage._createdAt != nil}
+  /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
+  mutating func clearCreatedAt() {_uniqueStorage()._createdAt = nil}
+
+  var updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._updatedAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._updatedAt = newValue}
+  }
+  /// Returns true if `updatedAt` has been explicitly set.
+  var hasUpdatedAt: Bool {return _storage._updatedAt != nil}
+  /// Clears the value of `updatedAt`. Subsequent reads from it will return its default value.
+  mutating func clearUpdatedAt() {_uniqueStorage()._updatedAt = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Note_CreateResponse {
@@ -110,23 +142,54 @@ struct Note_GetResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
+  var noteID: Int64 {
+    get {return _storage._noteID}
+    set {_uniqueStorage()._noteID = newValue}
+  }
 
-  var bodyType: Note_BodyType = .text
+  var bodyType: Note_BodyType {
+    get {return _storage._bodyType}
+    set {_uniqueStorage()._bodyType = newValue}
+  }
 
-  var createdBy: Int64 = 0
+  var createdBy: Int64 {
+    get {return _storage._createdBy}
+    set {_uniqueStorage()._createdBy = newValue}
+  }
 
-  var title: String = String()
+  var title: String {
+    get {return _storage._title}
+    set {_uniqueStorage()._title = newValue}
+  }
 
-  var body: String = String()
+  var body: String {
+    get {return _storage._body}
+    set {_uniqueStorage()._body = newValue}
+  }
 
-  var createdAt: Int64 = 0
+  var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._createdAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._createdAt = newValue}
+  }
+  /// Returns true if `createdAt` has been explicitly set.
+  var hasCreatedAt: Bool {return _storage._createdAt != nil}
+  /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
+  mutating func clearCreatedAt() {_uniqueStorage()._createdAt = nil}
 
-  var updatedAt: Int64 = 0
+  var updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._updatedAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._updatedAt = newValue}
+  }
+  /// Returns true if `updatedAt` has been explicitly set.
+  var hasUpdatedAt: Bool {return _storage._updatedAt != nil}
+  /// Clears the value of `updatedAt`. Subsequent reads from it will return its default value.
+  mutating func clearUpdatedAt() {_uniqueStorage()._updatedAt = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Note_NoteMessage {
@@ -134,23 +197,54 @@ struct Note_NoteMessage {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
+  var noteID: Int64 {
+    get {return _storage._noteID}
+    set {_uniqueStorage()._noteID = newValue}
+  }
 
-  var bodyType: Note_BodyType = .text
+  var bodyType: Note_BodyType {
+    get {return _storage._bodyType}
+    set {_uniqueStorage()._bodyType = newValue}
+  }
 
-  var createdBy: Int64 = 0
+  var createdBy: Int64 {
+    get {return _storage._createdBy}
+    set {_uniqueStorage()._createdBy = newValue}
+  }
 
-  var title: String = String()
+  var title: String {
+    get {return _storage._title}
+    set {_uniqueStorage()._title = newValue}
+  }
 
-  var body: String = String()
+  var body: String {
+    get {return _storage._body}
+    set {_uniqueStorage()._body = newValue}
+  }
 
-  var createdAt: Int64 = 0
+  var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._createdAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._createdAt = newValue}
+  }
+  /// Returns true if `createdAt` has been explicitly set.
+  var hasCreatedAt: Bool {return _storage._createdAt != nil}
+  /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
+  mutating func clearCreatedAt() {_uniqueStorage()._createdAt = nil}
 
-  var updatedAt: Int64 = 0
+  var updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._updatedAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._updatedAt = newValue}
+  }
+  /// Returns true if `updatedAt` has been explicitly set.
+  var hasUpdatedAt: Bool {return _storage._updatedAt != nil}
+  /// Clears the value of `updatedAt`. Subsequent reads from it will return its default value.
+  mutating func clearUpdatedAt() {_uniqueStorage()._updatedAt = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Note_ListRequest {
@@ -184,17 +278,40 @@ struct Note_UpdateRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
+  var noteID: Int64 {
+    get {return _storage._noteID}
+    set {_uniqueStorage()._noteID = newValue}
+  }
 
-  var bodyType: Note_BodyType = .text
+  var bodyType: Note_BodyType {
+    get {return _storage._bodyType}
+    set {_uniqueStorage()._bodyType = newValue}
+  }
 
-  var title: String = String()
+  var title: String {
+    get {return _storage._title}
+    set {_uniqueStorage()._title = newValue}
+  }
 
-  var body: String = String()
+  var body: String {
+    get {return _storage._body}
+    set {_uniqueStorage()._body = newValue}
+  }
+
+  var updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._updatedAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._updatedAt = newValue}
+  }
+  /// Returns true if `updatedAt` has been explicitly set.
+  var hasUpdatedAt: Bool {return _storage._updatedAt != nil}
+  /// Clears the value of `updatedAt`. Subsequent reads from it will return its default value.
+  mutating func clearUpdatedAt() {_uniqueStorage()._updatedAt = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Note_UpdateResponse {
@@ -248,41 +365,95 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     2: .standard(proto: "body_type"),
     3: .same(proto: "title"),
     4: .same(proto: "body"),
+    5: .standard(proto: "created_at"),
+    6: .standard(proto: "updated_at"),
   ]
 
+  fileprivate class _StorageClass {
+    var _createdBy: Int64 = 0
+    var _bodyType: Note_BodyType = .text
+    var _title: String = String()
+    var _body: String = String()
+    var _createdAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+    var _updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _createdBy = source._createdBy
+      _bodyType = source._bodyType
+      _title = source._title
+      _body = source._body
+      _createdAt = source._createdAt
+      _updatedAt = source._updatedAt
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.createdBy)
-      case 2: try decoder.decodeSingularEnumField(value: &self.bodyType)
-      case 3: try decoder.decodeSingularStringField(value: &self.title)
-      case 4: try decoder.decodeSingularStringField(value: &self.body)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._title)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._body)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.createdBy != 0 {
-      try visitor.visitSingularInt64Field(value: self.createdBy, fieldNumber: 1)
-    }
-    if self.bodyType != .text {
-      try visitor.visitSingularEnumField(value: self.bodyType, fieldNumber: 2)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 3)
-    }
-    if !self.body.isEmpty {
-      try visitor.visitSingularStringField(value: self.body, fieldNumber: 4)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._createdBy != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._createdBy, fieldNumber: 1)
+      }
+      if _storage._bodyType != .text {
+        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
+      }
+      if !_storage._title.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 3)
+      }
+      if !_storage._body.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 4)
+      }
+      if let v = _storage._createdAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._updatedAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Note_CreateRequest, rhs: Note_CreateRequest) -> Bool {
-    if lhs.createdBy != rhs.createdBy {return false}
-    if lhs.bodyType != rhs.bodyType {return false}
-    if lhs.title != rhs.title {return false}
-    if lhs.body != rhs.body {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._createdBy != rhs_storage._createdBy {return false}
+        if _storage._bodyType != rhs_storage._bodyType {return false}
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._updatedAt != rhs_storage._updatedAt {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -358,54 +529,98 @@ extension Note_GetResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     7: .standard(proto: "updated_at"),
   ]
 
+  fileprivate class _StorageClass {
+    var _noteID: Int64 = 0
+    var _bodyType: Note_BodyType = .text
+    var _createdBy: Int64 = 0
+    var _title: String = String()
+    var _body: String = String()
+    var _createdAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+    var _updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _noteID = source._noteID
+      _bodyType = source._bodyType
+      _createdBy = source._createdBy
+      _title = source._title
+      _body = source._body
+      _createdAt = source._createdAt
+      _updatedAt = source._updatedAt
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
-      case 2: try decoder.decodeSingularEnumField(value: &self.bodyType)
-      case 3: try decoder.decodeSingularInt64Field(value: &self.createdBy)
-      case 4: try decoder.decodeSingularStringField(value: &self.title)
-      case 5: try decoder.decodeSingularStringField(value: &self.body)
-      case 6: try decoder.decodeSingularInt64Field(value: &self.createdAt)
-      case 7: try decoder.decodeSingularInt64Field(value: &self.updatedAt)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
+        case 3: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._title)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._body)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
-    }
-    if self.bodyType != .text {
-      try visitor.visitSingularEnumField(value: self.bodyType, fieldNumber: 2)
-    }
-    if self.createdBy != 0 {
-      try visitor.visitSingularInt64Field(value: self.createdBy, fieldNumber: 3)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 4)
-    }
-    if !self.body.isEmpty {
-      try visitor.visitSingularStringField(value: self.body, fieldNumber: 5)
-    }
-    if self.createdAt != 0 {
-      try visitor.visitSingularInt64Field(value: self.createdAt, fieldNumber: 6)
-    }
-    if self.updatedAt != 0 {
-      try visitor.visitSingularInt64Field(value: self.updatedAt, fieldNumber: 7)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._noteID != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      }
+      if _storage._bodyType != .text {
+        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
+      }
+      if _storage._createdBy != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._createdBy, fieldNumber: 3)
+      }
+      if !_storage._title.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 4)
+      }
+      if !_storage._body.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 5)
+      }
+      if let v = _storage._createdAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._updatedAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Note_GetResponse, rhs: Note_GetResponse) -> Bool {
-    if lhs.noteID != rhs.noteID {return false}
-    if lhs.bodyType != rhs.bodyType {return false}
-    if lhs.createdBy != rhs.createdBy {return false}
-    if lhs.title != rhs.title {return false}
-    if lhs.body != rhs.body {return false}
-    if lhs.createdAt != rhs.createdAt {return false}
-    if lhs.updatedAt != rhs.updatedAt {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._noteID != rhs_storage._noteID {return false}
+        if _storage._bodyType != rhs_storage._bodyType {return false}
+        if _storage._createdBy != rhs_storage._createdBy {return false}
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._updatedAt != rhs_storage._updatedAt {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -423,54 +638,98 @@ extension Note_NoteMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     7: .standard(proto: "updated_at"),
   ]
 
+  fileprivate class _StorageClass {
+    var _noteID: Int64 = 0
+    var _bodyType: Note_BodyType = .text
+    var _createdBy: Int64 = 0
+    var _title: String = String()
+    var _body: String = String()
+    var _createdAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+    var _updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _noteID = source._noteID
+      _bodyType = source._bodyType
+      _createdBy = source._createdBy
+      _title = source._title
+      _body = source._body
+      _createdAt = source._createdAt
+      _updatedAt = source._updatedAt
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
-      case 2: try decoder.decodeSingularEnumField(value: &self.bodyType)
-      case 3: try decoder.decodeSingularInt64Field(value: &self.createdBy)
-      case 4: try decoder.decodeSingularStringField(value: &self.title)
-      case 5: try decoder.decodeSingularStringField(value: &self.body)
-      case 6: try decoder.decodeSingularInt64Field(value: &self.createdAt)
-      case 7: try decoder.decodeSingularInt64Field(value: &self.updatedAt)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
+        case 3: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._title)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._body)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
-    }
-    if self.bodyType != .text {
-      try visitor.visitSingularEnumField(value: self.bodyType, fieldNumber: 2)
-    }
-    if self.createdBy != 0 {
-      try visitor.visitSingularInt64Field(value: self.createdBy, fieldNumber: 3)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 4)
-    }
-    if !self.body.isEmpty {
-      try visitor.visitSingularStringField(value: self.body, fieldNumber: 5)
-    }
-    if self.createdAt != 0 {
-      try visitor.visitSingularInt64Field(value: self.createdAt, fieldNumber: 6)
-    }
-    if self.updatedAt != 0 {
-      try visitor.visitSingularInt64Field(value: self.updatedAt, fieldNumber: 7)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._noteID != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      }
+      if _storage._bodyType != .text {
+        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
+      }
+      if _storage._createdBy != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._createdBy, fieldNumber: 3)
+      }
+      if !_storage._title.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 4)
+      }
+      if !_storage._body.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 5)
+      }
+      if let v = _storage._createdAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._updatedAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Note_NoteMessage, rhs: Note_NoteMessage) -> Bool {
-    if lhs.noteID != rhs.noteID {return false}
-    if lhs.bodyType != rhs.bodyType {return false}
-    if lhs.createdBy != rhs.createdBy {return false}
-    if lhs.title != rhs.title {return false}
-    if lhs.body != rhs.body {return false}
-    if lhs.createdAt != rhs.createdAt {return false}
-    if lhs.updatedAt != rhs.updatedAt {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._noteID != rhs_storage._noteID {return false}
+        if _storage._bodyType != rhs_storage._bodyType {return false}
+        if _storage._createdBy != rhs_storage._createdBy {return false}
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._updatedAt != rhs_storage._updatedAt {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -547,41 +806,87 @@ extension Note_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     2: .standard(proto: "body_type"),
     3: .same(proto: "title"),
     4: .same(proto: "body"),
+    5: .standard(proto: "updated_at"),
   ]
 
+  fileprivate class _StorageClass {
+    var _noteID: Int64 = 0
+    var _bodyType: Note_BodyType = .text
+    var _title: String = String()
+    var _body: String = String()
+    var _updatedAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _noteID = source._noteID
+      _bodyType = source._bodyType
+      _title = source._title
+      _body = source._body
+      _updatedAt = source._updatedAt
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
-      case 2: try decoder.decodeSingularEnumField(value: &self.bodyType)
-      case 3: try decoder.decodeSingularStringField(value: &self.title)
-      case 4: try decoder.decodeSingularStringField(value: &self.body)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._title)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._body)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
-    }
-    if self.bodyType != .text {
-      try visitor.visitSingularEnumField(value: self.bodyType, fieldNumber: 2)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 3)
-    }
-    if !self.body.isEmpty {
-      try visitor.visitSingularStringField(value: self.body, fieldNumber: 4)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._noteID != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      }
+      if _storage._bodyType != .text {
+        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
+      }
+      if !_storage._title.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 3)
+      }
+      if !_storage._body.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 4)
+      }
+      if let v = _storage._updatedAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Note_UpdateRequest, rhs: Note_UpdateRequest) -> Bool {
-    if lhs.noteID != rhs.noteID {return false}
-    if lhs.bodyType != rhs.bodyType {return false}
-    if lhs.title != rhs.title {return false}
-    if lhs.body != rhs.body {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._noteID != rhs_storage._noteID {return false}
+        if _storage._bodyType != rhs_storage._bodyType {return false}
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._updatedAt != rhs_storage._updatedAt {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

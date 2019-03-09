@@ -98,6 +98,14 @@ internal class Auth {
         set { KeyStore.shared.accessToken = newValue }
     }
 
+    internal func newMetadata() -> Metadata {
+        let metadata = Metadata()
+        if let accessToken: String = self.accessToken {
+            try? metadata.add(key: "authorization", value: "Bearer " + accessToken)
+        }
+        return metadata
+    }
+
     internal func updateUserTokenInfo(_ shouldRefreshAccessTokenPeriodically: Bool = true,
                                       accessToken: String?,
                                       refreshToken: String?,
