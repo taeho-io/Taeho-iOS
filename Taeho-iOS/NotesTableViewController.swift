@@ -125,9 +125,8 @@ class NotesTableViewController: UITableViewController {
 
         initActivityIndicator()
 
-        // Disable dataSource and delegate to use tableview rx bind to tableview
+        // Disable dataSource to use tableview rx bind to tableview
         tableView.dataSource = nil
-        tableView.delegate = nil
 
         tableView.rowHeight = 100
 
@@ -138,6 +137,8 @@ class NotesTableViewController: UITableViewController {
                 cell.body?.text = item.body
                 cell.updatedAt?.text = item.updatedAt.date.description
                 return cell
+            }, canEditRowAtIndexPath: { _, _ in
+                return true
             }
         )
 
@@ -152,7 +153,8 @@ class NotesTableViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
 
-        tableView.rx.itemSelected
+        tableView.rx
+            .itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 self?.tappedNoteRow = indexPath.row
                 self?.performSegue(withIdentifier: "SegueNoteEditView", sender: self)
@@ -160,7 +162,8 @@ class NotesTableViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
 
-        tableView.rx.itemDeleted
+        tableView.rx
+            .itemDeleted
             .subscribe(onNext: { indexPath in
                 let notes = try? self.notes.value()
                 guard var newNotes: [Note_NoteMessage] = notes else{
