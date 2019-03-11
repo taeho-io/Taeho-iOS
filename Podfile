@@ -19,11 +19,29 @@ target 'Taeho-iOS' do
   target 'Taeho-iOSTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxSwift', '~> 4.4'
+    pod 'RxCocoa', '~> 4.4'
+    pod 'SwiftGRPC', '~> 0.6.0'
+    pod 'KeychainAccess', '~> 3.1.2'
+    pod 'GoogleSignIn', '~> 4.4.0'
+    pod 'SideMenu', '~> 5.0.3'
+    pod 'RxKeyboard', '~> 0.9.0'
+    pod 'Then', '~> 2.4.0'
+    pod 'RxDataSources', '~> 3.1.0'
   end
 
   target 'Taeho-iOSUITests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxSwift', '~> 4.4'
+    pod 'RxCocoa', '~> 4.4'
+    pod 'SwiftGRPC', '~> 0.6.0'
+    pod 'KeychainAccess', '~> 3.1.2'
+    pod 'GoogleSignIn', '~> 4.4.0'
+    pod 'SideMenu', '~> 5.0.3'
+    pod 'RxKeyboard', '~> 0.9.0'
+    pod 'Then', '~> 2.4.0'
+    pod 'RxDataSources', '~> 3.1.0'
   end
 
 end

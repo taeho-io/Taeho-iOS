@@ -24,6 +24,8 @@
 		7439177A2231024100775A73 /* user.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743917772231024000775A73 /* user.grpc.swift */; };
 		7439177B2231024100775A73 /* user.grpc-rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743917782231024100775A73 /* user.grpc-rx.swift */; };
 		7439177C2231024100775A73 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743917792231024100775A73 /* user.pb.swift */; };
+		745B5BA62236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745B5BA52236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework */; };
+		745B5BA82236E30200B18F53 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745B5BA72236E30200B18F53 /* Pods_Taeho_iOSUITests.framework */; };
 		74A19B0B21E71275006467FA /* LaunchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0A21E71275006467FA /* LaunchNavigationController.swift */; };
 		74A19B0D21E71340006467FA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0C21E71340006467FA /* LaunchViewController.swift */; };
 		74A19B0F21E71701006467FA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A19B0E21E71701006467FA /* SignInViewController.swift */; };
@@ -44,7 +46,9 @@
 		74D5691A21E2939700E6B6E7 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5691921E2939700E6B6E7 /* Auth.swift */; };
 		74E5CA3D21FD687300A1B51B /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E5CA3C21FD687300A1B51B /* NotesTableViewController.swift */; };
 		74E5CA3F21FD6A6800A1B51B /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E5CA3E21FD6A6800A1B51B /* RootTabBarController.swift */; };
+		8C2DEBE390B9945B2E39AD9F /* Pods_Taeho_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745B5BA52236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework */; };
 		8D5BCE00D3B139665E8F066C /* Pods_Taeho_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D4A66EA10493620F994A8 /* Pods_Taeho_iOS.framework */; };
+		A05BEBB2BCA9AAFA21509181 /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745B5BA72236E30200B18F53 /* Pods_Taeho_iOSUITests.framework */; };
 		A90279FACFAAE98E5F5E28D5 /* Pods_Taeho_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DB0F696E662F50915D126C /* Pods_Taeho_iOSTests.framework */; };
 		C59D01B162A2BCD2B9C9F65D /* Pods_Taeho_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF32307868E5640354A926F /* Pods_Taeho_iOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +93,8 @@
 		743917772231024000775A73 /* user.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.grpc.swift; sourceTree = "<group>"; };
 		743917782231024100775A73 /* user.grpc-rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "user.grpc-rx.swift"; sourceTree = "<group>"; };
 		743917792231024100775A73 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
+		745B5BA52236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Taeho_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		745B5BA72236E30200B18F53 /* Pods_Taeho_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Taeho_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A19B0A21E71275006467FA /* LaunchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNavigationController.swift; sourceTree = "<group>"; };
 		74A19B0C21E71340006467FA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74A19B0E21E71701006467FA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				745B5BA82236E30200B18F53 /* Pods_Taeho_iOSUITests.framework in Frameworks */,
+				745B5BA62236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework in Frameworks */,
 				8D5BCE00D3B139665E8F066C /* Pods_Taeho_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90279FACFAAE98E5F5E28D5 /* Pods_Taeho_iOSTests.framework in Frameworks */,
+				8C2DEBE390B9945B2E39AD9F /* Pods_Taeho_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C59D01B162A2BCD2B9C9F65D /* Pods_Taeho_iOSUITests.framework in Frameworks */,
+				A05BEBB2BCA9AAFA21509181 /* Pods_Taeho_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +162,8 @@
 		04367C462EA1E35F700D705A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				745B5BA72236E30200B18F53 /* Pods_Taeho_iOSUITests.framework */,
+				745B5BA52236E2FC00B18F53 /* Pods_Taeho_iOSTests.framework */,
 				C24D4A66EA10493620F994A8 /* Pods_Taeho_iOS.framework */,
 				32DB0F696E662F50915D126C /* Pods_Taeho_iOSTests.framework */,
 				1FF32307868E5640354A926F /* Pods_Taeho_iOSUITests.framework */,
@@ -334,6 +346,8 @@
 				74D568CB21E043E700E6B6E7 /* Sources */,
 				74D568CC21E043E700E6B6E7 /* Frameworks */,
 				74D568CD21E043E700E6B6E7 /* Resources */,
+				EF1AEB3A88DCA8F942AD569A /* [CP] Embed Pods Frameworks */,
+				E9558F11383450DB56AB4B6E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,6 +367,8 @@
 				74D568D621E043E700E6B6E7 /* Sources */,
 				74D568D721E043E700E6B6E7 /* Frameworks */,
 				74D568D821E043E700E6B6E7 /* Resources */,
+				394B08F13D557EC3EF467DBC /* [CP] Embed Pods Frameworks */,
+				17797E74CDC1A43C832FCCDA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -435,6 +451,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17797E74CDC1A43C832FCCDA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1EBF9FF43B7E8C06BB222600 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,6 +515,58 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOS/Pods-Taeho-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		394B08F13D557EC3EF467DBC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSUITests/Pods-Taeho-iOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		413533FF547F4C589C3F584D /* [CP] Check Pods Manifest.lock */ = {
@@ -573,6 +663,80 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9558F11383450DB56AB4B6E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF1AEB3A88DCA8F942AD569A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Taeho-iOSTests/Pods-Taeho-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
