@@ -5,6 +5,7 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
+  - Differentiator (3.1.0)
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
@@ -32,14 +33,18 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxKeyboard (0.9.0):
     - RxCocoa (>= 4.3.1)
     - RxSwift (>= 4.3.1)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
   - SideMenu (5.0.3)
   - SwiftGRPC (0.6.0):
     - BoringSSL (~> 10.0)
@@ -52,15 +57,17 @@ DEPENDENCIES:
   - GoogleSignIn (~> 4.4.0)
   - KeychainAccess (~> 3.1.2)
   - RxCocoa (~> 4.4)
+  - RxDataSources (~> 3.1.0)
   - RxKeyboard (~> 0.9.0)
   - RxSwift (~> 4.4)
   - SideMenu (~> 5.0.3)
   - SwiftGRPC (~> 0.6.0)
-  - Then
+  - Then (~> 2.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL
+    - Differentiator
     - GoogleSignIn
     - GoogleToolboxForMac
     - gRPC-Core
@@ -69,6 +76,7 @@ SPEC REPOS:
     - nanopb
     - RxAtomic
     - RxCocoa
+    - RxDataSources
     - RxKeyboard
     - RxSwift
     - SideMenu
@@ -78,21 +86,23 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   gRPC-Core: 9696b220565b283e021cf2722d473a4a74b7622a
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   SwiftGRPC: 465792c0e09dcb083d19d97137cee71b4f4f8b6f
   SwiftProtobuf: 7147b8ec19c8c0694a45155d989ea9e6dedaf51f
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
-PODFILE CHECKSUM: 57b3a3dbc15e0596ca63036bfe477a7737b4cdde
+PODFILE CHECKSUM: 296978da2396fa37949b08e3c07df6253e9a1090
 
 COCOAPODS: 1.5.3

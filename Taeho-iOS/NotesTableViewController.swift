@@ -11,11 +11,35 @@ import RxSwift
 import RxCocoa
 import SwiftGRPC
 import SwiftProtobuf
+import RxDataSources
 
 class NotesTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
     @IBOutlet weak var updatedAt: UILabel!
+}
+
+struct SectionOfNote {
+    var header: String
+    var items: [Note_NoteMessage]
+}
+
+extension SectionOfNote: AnimatableSectionModelType {
+    typealias Item = Note_NoteMessage
+    typealias Identity = String
+
+    var identity: Identity { return header }
+
+    init(original: SectionOfNote, items: [Item]) {
+        self = original
+        self.items = items
+    }
+}
+
+extension Note_NoteMessage: IdentifiableType, Equatable {
+    typealias Identity = String
+
+    var identity: Identity { return noteID }
 }
 
 class NotesTableViewController: UITableViewController {
@@ -79,23 +103,19 @@ class NotesTableViewController: UITableViewController {
         noteEditViewController.noteBodyTextView.rx.text
             //.debounce(1, scheduler: MainScheduler.asyncInstance)
             .subscribe(onNext: { noteBodyText in
-                guard let noteBodyText: String = noteBodyText else {
+                guard let noteBodyText = noteBodyText else {
                     return
                 }
+                guard var notes = try? self.notes.value() else {
+                    return
+                }
+                guard noteBodyText != notes[row].body else {
+                    return
+                }
+                notes[row].body = noteBodyText
+                notes[row].updatedAt = Google_Protobuf_Timestamp.init(date: Date())
 
-                var notes = try? self.notes.value()
-                guard noteBodyText != notes?[row].body else {
-                    return
-                }
-                notes?[row].body = noteBodyText
-                notes?[row].updatedAt = Google_Protobuf_Timestamp.init(date: Date())
-
-                guard var newNotes: [Note_NoteMessage] = notes else {
-                    return
-                }
-                newNotes.sort(by: { $0.updatedAt.seconds > $1.updatedAt.seconds})
-                self.notes.onNext(newNotes)
-                row = 0
+                self.notes.onNext(notes)
             })
             .disposed(by: disposeBag)
     }
@@ -105,25 +125,32 @@ class NotesTableViewController: UITableViewController {
 
         initActivityIndicator()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
         // Disable dataSource and delegate to use tableview rx bind to tableview
         tableView.dataSource = nil
         tableView.delegate = nil
 
         tableView.rowHeight = 100
 
-        notes
-            .bind(to: tableView.rx.items(cellIdentifier: "NoteCell", cellType: NotesTableViewCell.self)) { row, element, cell in
-                cell.title.text = element.title
-                cell.body.text = element.body
-                cell.updatedAt.text = element.updatedAt.textFormatString()
+        let dataSource = RxTableViewSectionedAnimatedDataSource<SectionOfNote>(
+            configureCell: { dataSource, tableView, indexPath, item in
+                let cell: NotesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NotesTableViewCell
+                cell.title?.text = item.title
+                cell.body?.text = item.body
+                cell.updatedAt?.text = item.updatedAt.textFormatString()
+                return cell
             }
+        )
+
+        let sections: BehaviorSubject<[SectionOfNote]> = BehaviorSubject(value: [SectionOfNote]())
+        sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
+
+        notes
+            .subscribe(onNext: { note in
+                sections.onNext([(SectionOfNote(header: "", items: note))])
+            })
+            .disposed(by: disposeBag)
 
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
@@ -145,17 +172,7 @@ class NotesTableViewController: UITableViewController {
             .disposed(by: disposeBag)
 
         showActivityIndicator()
-        listNotes(offset: 0, limit: 20)
-            .subscribe(onNext: { resp in
-                self.notes.onNext(resp.notes)
-
-                DispatchQueue.main.async {
-                    self.hideActivityIndicator()
-                }
-            }, onError: { error in
-                self.hideActivityIndicator()
-            })
-            .disposed(by: disposeBag)
+        refresh(refreshControl!)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -168,6 +185,7 @@ class NotesTableViewController: UITableViewController {
         if newNotes.count > 0 && newNotes[0].title == "" && newNotes[0].body == "" {
             newNotes.remove(at: 0)
         }
+        newNotes.sort(by: { $0.updatedAt.seconds > $1.updatedAt.seconds})
         self.notes.onNext(newNotes)
     }
 
@@ -181,7 +199,6 @@ class NotesTableViewController: UITableViewController {
     }
 
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        showActivityIndicator()
         listNotes(offset: 0, limit: 20)
             .subscribe(onNext: { resp in
                 self.notes.onNext(resp.notes)
