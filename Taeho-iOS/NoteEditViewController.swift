@@ -29,7 +29,6 @@ class NoteEditViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.hidesBarsOnSwipe = true
 
         noteBodyTextView.frame = view.frame
         self.view.addSubview(self.noteBodyTextView)
@@ -57,5 +56,11 @@ class NoteEditViewController: UIViewController {
             self.noteBodyTextView.contentInset.bottom = 0
             self.noteBodyTextView.scrollIndicatorInsets.bottom = self.noteBodyTextView.contentInset.bottom
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.hidesBarsOnSwipe = true
     }
 }

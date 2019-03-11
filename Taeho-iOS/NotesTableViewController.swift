@@ -133,10 +133,10 @@ class NotesTableViewController: UITableViewController {
 
         let dataSource = RxTableViewSectionedAnimatedDataSource<SectionOfNote>(
             configureCell: { dataSource, tableView, indexPath, item in
-                let cell: NotesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NotesTableViewCell
+                let cell: NotesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NotesTableViewCell
                 cell.title?.text = item.title
                 cell.body?.text = item.body
-                cell.updatedAt?.text = item.updatedAt.textFormatString()
+                cell.updatedAt?.text = item.updatedAt.date.description
                 return cell
             }
         )
@@ -173,6 +173,12 @@ class NotesTableViewController: UITableViewController {
 
         showActivityIndicator()
         refresh(refreshControl!)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.hidesBarsOnSwipe = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
