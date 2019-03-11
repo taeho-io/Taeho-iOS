@@ -16,7 +16,9 @@ class NoteEditViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
-    let noteTextView = UITextView(frame: .zero).then {
+    var noteID: String? = nil
+
+    let noteBodyTextView = UITextView(frame: .zero).then {
         $0.alwaysBounceVertical = true
         $0.keyboardDismissMode = .interactive
         $0.backgroundColor = .clear
@@ -29,21 +31,21 @@ class NoteEditViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.hidesBarsOnSwipe = true
 
-        noteTextView.frame = view.frame
-        self.view.addSubview(self.noteTextView)
+        noteBodyTextView.frame = view.frame
+        self.view.addSubview(self.noteBodyTextView)
 
         RxKeyboard.instance.visibleHeight
           .drive(onNext: { [weak self] keyboardVisibleHeight in
               self?.view.setNeedsLayout()
               UIView.animate(withDuration: 0) {
-                  self?.noteTextView.contentInset.bottom = keyboardVisibleHeight
-                  self?.noteTextView.scrollIndicatorInsets.bottom = (self?.noteTextView.contentInset.bottom)!
+                  self?.noteBodyTextView.contentInset.bottom = keyboardVisibleHeight
+                  self?.noteBodyTextView.scrollIndicatorInsets.bottom = (self?.noteBodyTextView.contentInset.bottom)!
                   self?.view.layoutIfNeeded()
               }
           })
             .disposed(by: self.disposeBag)
 
-        noteTextView.rx.text.subscribe(onNext: { noteText in
+        noteBodyTextView.rx.text.subscribe(onNext: { noteBodyText in
         })
         .disposed(by: disposeBag)
     }
@@ -51,9 +53,9 @@ class NoteEditViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if self.noteTextView.contentInset.bottom == 0 {
-            self.noteTextView.contentInset.bottom = 0
-            self.noteTextView.scrollIndicatorInsets.bottom = self.noteTextView.contentInset.bottom
+        if self.noteBodyTextView.contentInset.bottom == 0 {
+            self.noteBodyTextView.contentInset.bottom = 0
+            self.noteBodyTextView.scrollIndicatorInsets.bottom = self.noteBodyTextView.contentInset.bottom
         }
     }
 }

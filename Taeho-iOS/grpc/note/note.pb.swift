@@ -68,6 +68,11 @@ struct Note_CreateRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var noteID: String {
+    get {return _storage._noteID}
+    set {_uniqueStorage()._noteID = newValue}
+  }
+
   var createdBy: Int64 {
     get {return _storage._createdBy}
     set {_uniqueStorage()._createdBy = newValue}
@@ -118,8 +123,6 @@ struct Note_CreateResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
-
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -130,7 +133,7 @@ struct Note_GetRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
+  var noteID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -142,7 +145,7 @@ struct Note_GetResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 {
+  var noteID: String {
     get {return _storage._noteID}
     set {_uniqueStorage()._noteID = newValue}
   }
@@ -197,7 +200,7 @@ struct Note_NoteMessage {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 {
+  var noteID: String {
     get {return _storage._noteID}
     set {_uniqueStorage()._noteID = newValue}
   }
@@ -278,7 +281,7 @@ struct Note_UpdateRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 {
+  var noteID: String {
     get {return _storage._noteID}
     set {_uniqueStorage()._noteID = newValue}
   }
@@ -329,7 +332,7 @@ struct Note_DeleteRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var noteID: Int64 = 0
+  var noteID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -361,15 +364,17 @@ extension Note_BodyType: SwiftProtobuf._ProtoNameProviding {
 extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "created_by"),
-    2: .standard(proto: "body_type"),
-    3: .same(proto: "title"),
-    4: .same(proto: "body"),
-    5: .standard(proto: "created_at"),
-    6: .standard(proto: "updated_at"),
+    1: .standard(proto: "note_id"),
+    2: .standard(proto: "created_by"),
+    3: .standard(proto: "body_type"),
+    4: .same(proto: "title"),
+    5: .same(proto: "body"),
+    6: .standard(proto: "created_at"),
+    7: .standard(proto: "updated_at"),
   ]
 
   fileprivate class _StorageClass {
+    var _noteID: String = String()
     var _createdBy: Int64 = 0
     var _bodyType: Note_BodyType = .text
     var _title: String = String()
@@ -382,6 +387,7 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     private init() {}
 
     init(copying source: _StorageClass) {
+      _noteID = source._noteID
       _createdBy = source._createdBy
       _bodyType = source._bodyType
       _title = source._title
@@ -403,12 +409,13 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._title)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._body)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._noteID)
+        case 2: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._title)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._body)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
         default: break
         }
       }
@@ -417,23 +424,26 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._noteID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._noteID, fieldNumber: 1)
+      }
       if _storage._createdBy != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._createdBy, fieldNumber: 1)
+        try visitor.visitSingularInt64Field(value: _storage._createdBy, fieldNumber: 2)
       }
       if _storage._bodyType != .text {
-        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
+        try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 3)
       }
       if !_storage._title.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 3)
+        try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 4)
       }
       if !_storage._body.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 4)
+        try visitor.visitSingularStringField(value: _storage._body, fieldNumber: 5)
       }
       if let v = _storage._createdAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
       if let v = _storage._updatedAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -444,6 +454,7 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._noteID != rhs_storage._noteID {return false}
         if _storage._createdBy != rhs_storage._createdBy {return false}
         if _storage._bodyType != rhs_storage._bodyType {return false}
         if _storage._title != rhs_storage._title {return false}
@@ -461,28 +472,18 @@ extension Note_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 
 extension Note_CreateResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "note_id"),
-  ]
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
-      default: break
-      }
+    while let _ = try decoder.nextFieldNumber() {
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Note_CreateResponse, rhs: Note_CreateResponse) -> Bool {
-    if lhs.noteID != rhs.noteID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -497,15 +498,15 @@ extension Note_GetRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
+      case 1: try decoder.decodeSingularStringField(value: &self.noteID)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
+    if !self.noteID.isEmpty {
+      try visitor.visitSingularStringField(value: self.noteID, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -530,7 +531,7 @@ extension Note_GetResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
   ]
 
   fileprivate class _StorageClass {
-    var _noteID: Int64 = 0
+    var _noteID: String = String()
     var _bodyType: Note_BodyType = .text
     var _createdBy: Int64 = 0
     var _title: String = String()
@@ -565,7 +566,7 @@ extension Note_GetResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._noteID)
         case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
         case 3: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
         case 4: try decoder.decodeSingularStringField(value: &_storage._title)
@@ -580,8 +581,8 @@ extension Note_GetResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._noteID != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      if !_storage._noteID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._noteID, fieldNumber: 1)
       }
       if _storage._bodyType != .text {
         try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
@@ -639,7 +640,7 @@ extension Note_NoteMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
   ]
 
   fileprivate class _StorageClass {
-    var _noteID: Int64 = 0
+    var _noteID: String = String()
     var _bodyType: Note_BodyType = .text
     var _createdBy: Int64 = 0
     var _title: String = String()
@@ -674,7 +675,7 @@ extension Note_NoteMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._noteID)
         case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
         case 3: try decoder.decodeSingularInt64Field(value: &_storage._createdBy)
         case 4: try decoder.decodeSingularStringField(value: &_storage._title)
@@ -689,8 +690,8 @@ extension Note_NoteMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._noteID != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      if !_storage._noteID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._noteID, fieldNumber: 1)
       }
       if _storage._bodyType != .text {
         try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
@@ -810,7 +811,7 @@ extension Note_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   ]
 
   fileprivate class _StorageClass {
-    var _noteID: Int64 = 0
+    var _noteID: String = String()
     var _bodyType: Note_BodyType = .text
     var _title: String = String()
     var _body: String = String()
@@ -841,7 +842,7 @@ extension Note_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularInt64Field(value: &_storage._noteID)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._noteID)
         case 2: try decoder.decodeSingularEnumField(value: &_storage._bodyType)
         case 3: try decoder.decodeSingularStringField(value: &_storage._title)
         case 4: try decoder.decodeSingularStringField(value: &_storage._body)
@@ -854,8 +855,8 @@ extension Note_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._noteID != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._noteID, fieldNumber: 1)
+      if !_storage._noteID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._noteID, fieldNumber: 1)
       }
       if _storage._bodyType != .text {
         try visitor.visitSingularEnumField(value: _storage._bodyType, fieldNumber: 2)
@@ -920,15 +921,15 @@ extension Note_DeleteRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.noteID)
+      case 1: try decoder.decodeSingularStringField(value: &self.noteID)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.noteID != 0 {
-      try visitor.visitSingularInt64Field(value: self.noteID, fieldNumber: 1)
+    if !self.noteID.isEmpty {
+      try visitor.visitSingularStringField(value: self.noteID, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

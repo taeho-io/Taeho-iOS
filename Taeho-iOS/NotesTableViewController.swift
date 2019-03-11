@@ -46,27 +46,58 @@ class NotesTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let noteEditViewController = segue.destination as? NoteEditViewController, let row: Int = tappedNoteRow {
-            try? noteEditViewController.noteTextView.text = self.notes.value()[row].body
-
-            noteEditViewController.noteTextView.rx.text
-                .debounce(1, scheduler: MainScheduler.asyncInstance)
-                .subscribe(onNext: { noteText in
-                    if let noteText: String = noteText {
-                        var notes = try? self.notes.value()
-                        if noteText == notes?[row].body {
-                            return
-                        }
-                        notes?[row].body = noteText
-                        notes?[row].updatedAt = Google_Protobuf_Timestamp.init(date: Date())
-                        if var notes: [Note_NoteMessage] = notes {
-                            notes.sort(by: { $0.updatedAt.seconds > $1.updatedAt.seconds})
-                            self.notes.onNext(notes)
-                        }
-                    }
-                })
-                .disposed(by: disposeBag)
+        guard let noteEditViewController = segue.destination as? NoteEditViewController else {
+            return
         }
+
+        var row: Int = 0
+        if let tappedNoteRow: Int = tappedNoteRow {
+            row = tappedNoteRow
+            try? noteEditViewController.noteID = self.notes.value()[row].noteID
+            try? noteEditViewController.noteBodyTextView.text = self.notes.value()[row].body
+        } else {
+            var notes = try? self.notes.value()
+            var newNote = Note_NoteMessage()
+            guard let userId: Int64 = Auth.shared.userId else {
+                return
+            }
+            newNote.noteID = UUID().uuidString
+            newNote.createdBy = userId
+
+            let ts = Google_Protobuf_Timestamp.init(date: Date())
+            newNote.createdAt = ts
+            newNote.updatedAt = ts
+
+            notes?.insert(newNote, at: 0)
+
+            guard let newNotes: [Note_NoteMessage] = notes else {
+                return
+            }
+            self.notes.onNext(newNotes)
+        }
+
+        noteEditViewController.noteBodyTextView.rx.text
+            //.debounce(1, scheduler: MainScheduler.asyncInstance)
+            .subscribe(onNext: { noteBodyText in
+                guard let noteBodyText: String = noteBodyText else {
+                    return
+                }
+
+                var notes = try? self.notes.value()
+                guard noteBodyText != notes?[row].body else {
+                    return
+                }
+                notes?[row].body = noteBodyText
+                notes?[row].updatedAt = Google_Protobuf_Timestamp.init(date: Date())
+
+                guard var newNotes: [Note_NoteMessage] = notes else {
+                    return
+                }
+                newNotes.sort(by: { $0.updatedAt.seconds > $1.updatedAt.seconds})
+                self.notes.onNext(newNotes)
+                row = 0
+            })
+            .disposed(by: disposeBag)
     }
 
     override func viewDidLoad() {
@@ -98,11 +129,18 @@ class NotesTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] indexPath in
                 self?.tappedNoteRow = indexPath.row
                 self?.performSegue(withIdentifier: "SegueNoteEditView", sender: self)
+                self?.tappedNoteRow = nil
             })
             .disposed(by: disposeBag)
 
         tableView.rx.itemDeleted
-            .subscribe(onNext: { [weak self] indexPath in
+            .subscribe(onNext: { indexPath in
+                let notes = try? self.notes.value()
+                guard var newNotes: [Note_NoteMessage] = notes else{
+                    return
+                }
+                newNotes.remove(at: indexPath.row)
+                self.notes.onNext(newNotes)
             })
             .disposed(by: disposeBag)
 
@@ -118,6 +156,19 @@ class NotesTableViewController: UITableViewController {
                 self.hideActivityIndicator()
             })
             .disposed(by: disposeBag)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let notes = try? self.notes.value()
+        guard var newNotes: [Note_NoteMessage] = notes else{
+            return
+        }
+        if newNotes.count > 0 && newNotes[0].title == "" && newNotes[0].body == "" {
+            newNotes.remove(at: 0)
+        }
+        self.notes.onNext(newNotes)
     }
 
     func listNotes(offset: Int64 = 0, limit: Int64 = 20) -> Observable<Note_ListResponse> {
